@@ -58,3 +58,13 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+
+var spawn = require('child_process').spawn;
+var winnerOffense = 'Abc';
+var winnerDefense = 'Def';
+var loserOffense = 'Ghi';
+var loserDefense = 'Jkl';
+var loserScore = '4';
+var py = spawn('python', ['RasberryElo.py', winnerOffense,  winnerDefense, loserOffense, loserDefense, loserScore]);
+
