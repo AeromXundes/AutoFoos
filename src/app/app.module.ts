@@ -8,7 +8,7 @@ import { HttpModule } from '@angular/http';
 import { MatButtonModule, MatCardModule, MatGridListModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
+import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -18,7 +18,7 @@ import { ElectronService } from './providers/electron.service';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    ScoreboardComponent
   ],
   imports: [
     BrowserModule,

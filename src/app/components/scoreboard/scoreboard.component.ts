@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ElectronService } from '../../providers/electron.service'
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-scoreboard',
+  templateUrl: './scoreboard.component.html',
+  styleUrls: ['./scoreboard.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class ScoreboardComponent implements OnInit {
   public goldScore = 0;
   public blackScore = 0;
   private myPriv: boolean;
