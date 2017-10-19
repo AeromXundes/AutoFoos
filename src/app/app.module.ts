@@ -5,7 +5,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MatCardModule, MatGridListModule, MatSelectModule, MatTabsModule, MatFormFieldModule} from '@angular/material';
+import { MatCardModule, MatGridListModule, MatSelectModule, MatTabsModule, MatFormFieldModule, MatButtonModule} from '@angular/material';
+
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -34,6 +35,7 @@ import { DefensePlayerComponent } from './defense-player/defense-player.componen
     AppRoutingModule,
     MatGridListModule,
     MatCardModule,
+    MatButtonModule,
     MatSelectModule,
     MatTabsModule,
     MatFormFieldModule,

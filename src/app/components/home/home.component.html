@@ -9,18 +9,30 @@
     <mat-card>
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title class="score">3</mat-card-title>
-        <mat-card-subtitle>Blue Team</mat-card-subtitle>
+        <mat-card-title class="score">{{goldScore}}</mat-card-title>
+        <mat-card-subtitle>Gold Team</mat-card-subtitle>
       </mat-card-header>
     </mat-card>
-  </mat-grid-tile>
+  </mat-grid-tile>  
   <mat-grid-tile>
     <mat-card>
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title class="score">2</mat-card-title>
-        <mat-card-subtitle>Red Team</mat-card-subtitle>
+        <mat-card-title class="score">{{blackScore}}</mat-card-title>
+        <mat-card-subtitle>Black Team</mat-card-subtitle>
       </mat-card-header>
     </mat-card>
-  </mat-grid-tile><mat-grid-tile>2</mat-grid-tile>
+  </mat-grid-tile>
+  <mat-grid-tile>
+      <div class="underneath">
+          <button mat-raised-button color="primary" (click)="addGoldScore()">+</button>    
+          <button mat-raised-button color="warn" (click)="subGoldScore()">-</button> 
+        </div>
+    </mat-grid-tile>  
+  <mat-grid-tile>
+      <div class="underneath">
+        <button mat-raised-button color="primary" (click)="addBlackScore()">+</button>    
+        <button mat-raised-button color="warn" (click)="subBlackScore()">-</button>  
+      </div>
+  </mat-grid-tile>
 </mat-grid-list>
