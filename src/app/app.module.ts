@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MatCardModule, MatGridListModule} from '@angular/material';
+import { MatCardModule, MatGridListModule, MatSelectModule, MatTabsModule, MatFormFieldModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -14,11 +14,14 @@ import { AppRoutingModule } from './app-routing.module';
 
 
 import { ElectronService } from './providers/electron.service';
+import { StartGamePageComponent } from './start-game-page/start-game-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    StartGamePageComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,11 @@ import { ElectronService } from './providers/electron.service';
     HttpModule,
     AppRoutingModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    MatSelectModule,
+    MatTabsModule,
+    MatFormFieldModule,
+    BrowserAnimationsModule
   ],
   providers: [ElectronService],
   bootstrap: [AppComponent]

@@ -1,0 +1,40 @@
+<mat-card-title style="text-align:center;">
+  <h3>Start Game</h3>
+</mat-card-title>
+<mat-tab-group>
+  <mat-tab label="Team Red">
+    <mat-grid-list cols="2" rowHeight="1:1">
+  <mat-grid-tile>
+    <form>
+    <mat-form-field>
+      <mat-select placeholder="Offense Player" [(ngModel)]="offensePlayer" name="player">
+        <mat-option *ngFor="let player of players" [value]="player.viewName">
+          {{player.viewName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p> Selected Player: {{offensePlayer}} </p>
+    </form>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <form>
+        <mat-form-field>
+          <mat-select placeholder="Defense Player" [(ngModel)]="defensePlayer" name="player">
+            <mat-option *ngFor="let player of players" [value]="player.viewName">
+              {{player.viewName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <p> Selected Player: {{defensePlayer}} </p>
+        </form> 
+  </mat-grid-tile>  
+</mat-grid-list>
+  </mat-tab>
+  <mat-tab label="Team Blue">Content 2</mat-tab>
+</mat-tab-group>
+
+<mat-card-title class="wrapper">
+<button mat-raised-button color="primary">
+  <h4>Start Game</h4>
+</button>
+</mat-card-title>
