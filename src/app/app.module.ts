@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MatCardModule, MatGridListModule} from '@angular/material';
+import { MatButtonModule, MatCardModule, MatGridListModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -26,7 +26,8 @@ import { ElectronService } from './providers/electron.service';
     HttpModule,
     AppRoutingModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [ElectronService],
   bootstrap: [AppComponent]

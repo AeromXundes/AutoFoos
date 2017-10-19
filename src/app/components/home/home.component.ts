@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GameStateService  } from '../../game-state.service'
+import { ElectronService } from '../../providers/electron.service'
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,9 @@ import { GameStateService  } from '../../game-state.service'
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  title = `App works !`;
+  public goldScore = 0;
+  public blackScore = 0;
+  private myPriv: boolean;
 
   constructor(private _gameState: GameStateService) { }
 
@@ -22,6 +25,24 @@ export class HomeComponent implements OnInit {
     this.blackScore = this._gameState.getScore().black;
   }
 
-  goldScore  = 0;
-  blackScore = 0;
+  addGoldScore() {
+    this._gameState.goldScored();
+    this.goldScore = this._gameState.getScore().gold;
+  }
+
+  subGoldScore() {
+    this._gameState.cancelGoldGoal();
+    this.goldScore = this._gateState.getScore().gold;
+  }
+
+  addBlackScore() {
+    this._gameState.blackScored();
+    this.blackScore = this._gameState.getScore().black;
+  }
+
+  subBlackScore() {
+    this._gameState.cancelBlackGoal();
+    this.blackScore = this._gameState.getScore().black;
+  }
+
 }
