@@ -1,0 +1,10 @@
+<form>
+    <mat-form-field>
+      <mat-select placeholder="Offense Player" [(ngModel)]="offensePlayer" name="player">
+        <mat-option *ngFor="let player of players" [value]="player.viewName">
+        {{player.viewName}}
+        </mat-option>
+        </mat-select>
+      </mat-form-field>
+    <p> Selected Player: {{offensePlayer}} </p>
+  </form>

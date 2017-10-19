@@ -5,7 +5,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MatButtonModule, MatCardModule, MatGridListModule} from '@angular/material';
+import { MatCardModule, MatGridListModule, MatSelectModule, MatTabsModule, MatFormFieldModule, MatButtonModule} from '@angular/material';
+
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -15,12 +16,19 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { ElectronService } from './providers/electron.service';
 import { SubmissionPageComponent } from './submission-page/submission-page.component';
+import { StartGamePageComponent } from './start-game-page/start-game-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OffensePlayerComponent } from './offense-player/offense-player.component';
+import { DefensePlayerComponent } from './defense-player/defense-player.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    SubmissionPageComponent
+    SubmissionPageComponent,
+    StartGamePageComponent,
+    OffensePlayerComponent,
+    DefensePlayerComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +37,11 @@ import { SubmissionPageComponent } from './submission-page/submission-page.compo
     AppRoutingModule,
     MatGridListModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSelectModule,
+    MatTabsModule,
+    MatFormFieldModule,
+    BrowserAnimationsModule
   ],
   providers: [ElectronService],
   bootstrap: [AppComponent]

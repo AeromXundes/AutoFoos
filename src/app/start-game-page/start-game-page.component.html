@@ -1,0 +1,31 @@
+<mat-card-title style="text-align:center;">
+  <h3>Foos Ball Keysight</h3>
+</mat-card-title>
+<mat-tab-group>
+  <mat-tab label="Team Red">
+    <mat-grid-list cols="2" rowHeight="1:1">
+      <mat-grid-tile>
+        <app-offense-player></app-offense-player>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <app-defense-player></app-defense-player>
+      </mat-grid-tile>  
+    </mat-grid-list>
+  </mat-tab>
+  <mat-tab label="Team Blue">
+    <mat-grid-list cols="2" rowHeight="1:1">
+      <mat-grid-tile>
+        <app-offense-player></app-offense-player>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <app-defense-player></app-defense-player>
+      </mat-grid-tile>  
+    </mat-grid-list>
+  </mat-tab>
+</mat-tab-group>
+
+<mat-card-title class="wrapper">
+  <button mat-raised-button color="primary">
+    <h4>Start Game</h4>
+  </button>
+</mat-card-title>

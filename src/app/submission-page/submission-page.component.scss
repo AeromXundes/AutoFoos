@@ -17,8 +17,28 @@
   }
   
   #submit {
-      width: 200px;
+      width: 600px;
       height: 200px;
+      top: 100px;
+      left: 100px;
+      margin: 0px;
+      padding: 0px;
+  }
+  #discard {
+      width: 200px;
+      height: 100px;
+      top: 340px;
+      left: 600px;
+      margin: 0px;
+      padding: 0px;
+  }
+  #back {
+      width: 200px;
+      height: 100px;
+      top: 340px;
+      left: 0px;
+      margin: 0px;
+      padding: 0px;
   }
 
   mat-grid-tile {
