@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
 
   subGoldScore() {
     this._gameState.cancelGoldGoal();
-    this.goldScore = this._gateState.getScore().gold;
+    this.goldScore = this._gameState.getScore().gold;
   }
 
   addBlackScore() {
