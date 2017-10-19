@@ -1,14 +1,14 @@
-import { FoosPage } from './app.po';
+import { AngularElectronPage } from './app.po';
+import { browser, element, by } from 'protractor';
 
-describe('foos App', function() {
-  let page: FoosPage;
+describe('angular-electron App', () => {
+  let page: AngularElectronPage;
 
   beforeEach(() => {
-    page = new FoosPage();
+    page = new AngularElectronPage();
   });
 
-  it('should display message saying app works', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+  it('should display message saying App works !', () => {
+    expect(element(by.css('app-home h1')).getText()).toMatch('App works !');
   });
 });
