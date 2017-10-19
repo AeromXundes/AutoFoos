@@ -16,12 +16,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { ElectronService } from './providers/electron.service';
 import { StartGamePageComponent } from './start-game-page/start-game-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OffensePlayerComponent } from './offense-player/offense-player.component';
+import { DefensePlayerComponent } from './defense-player/defense-player.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    StartGamePageComponent
+    StartGamePageComponent,
+    OffensePlayerComponent,
+    DefensePlayerComponent
   ],
   imports: [
     BrowserModule,
