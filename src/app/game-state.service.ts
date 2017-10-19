@@ -48,6 +48,13 @@ export class GameStateService {
   blackSwappedPositions() {
     //TODO
   }
+  setPlayers(players) {
+    this.gameState.gold.offensePlayer = players.gold.offense;
+    this.gameState.gold.defensePlayer = players.gold.defense;
+    this.gameState.black.offensePlayer = players.black.offense;
+    this.gameState.black.defensePlayer = players.black.defense;
+  }
+  
   getPlayers() {
     return {gold:  {offense: this.gameState.gold.offensePlayer,
                     defense: this.gameState.gold.defensePlayer},
