@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GameStateService  } from '../../game-state.service'
 import { ElectronService } from '../../providers/electron.service'
 
 @Component({
@@ -11,25 +12,37 @@ export class HomeComponent implements OnInit {
   public blackScore = 0;
   private myPriv: boolean;
 
-  constructor() { }
+  constructor(private _gameState: GameStateService) { }
+
 
   ngOnInit() {
+    this._gameState.start();
+    this._gameState.goldScored();
+    this._gameState.goldScored();
+    this._gameState.goldScored();
+    this._gameState.cancelGoldGoal();
+    this.goldScore  = this._gameState.getScore().gold;
+    this.blackScore = this._gameState.getScore().black;
   }
 
   addGoldScore() {
-    ++this.goldScore;
+    this._gameState.goldScored();
+    this.goldScore = this._gameState.getScore().gold;
   }
 
   subGoldScore() {
-    --this.goldScore;
+    this._gameState.cancelGoldGoal();
+    this.goldScore = this._gateState.getScore().gold;
   }
 
   addBlackScore() {
-    ++this.blackScore;
+    this._gameState.blackScored();
+    this.blackScore = this._gameState.getScore().black;
   }
 
   subBlackScore() {
-    --this.blackScore;
+    this._gameState.cancelBlackGoal();
+    this.blackScore = this._gameState.getScore().black;
   }
 
 }
