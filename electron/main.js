@@ -11,16 +11,28 @@ const url = require('url')
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
+
+let appUrl;
+
+appUrl = url.format({
+    pathname: 'localhost:4200',
+    protocol: 'http:',
+    slashes: true
+  })
+
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600})
+  mainWindow = new BrowserWindow({width: 800, height: 480})
+
+  
+  mainWindow.loadURL(appUrl);
 
   // and load the index.html of the app.
-  mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
-    protocol: 'file:',
-    slashes: true
-  }))
+//  mainWindow.loadURL(url.format({
+//    pathname: path.join(__dirname, 'index.html'),
+//    protocol: 'file:',
+//    slashes: true
+//  }))
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
