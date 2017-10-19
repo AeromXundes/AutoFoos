@@ -14,11 +14,13 @@ import { AppRoutingModule } from './app-routing.module';
 
 
 import { ElectronService } from './providers/electron.service';
+import { SubmissionPageComponent } from './submission-page/submission-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    SubmissionPageComponent
   ],
   imports: [
     BrowserModule,
