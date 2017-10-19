@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ElectronService } from '../../providers/electron.service'
 
 @Component({
   selector: 'app-home',
@@ -6,11 +7,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  title = `App works !`;
+  public goldScore = 0;
+  public blackScore = 0;
+  private myPriv: boolean;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  addGoldScore() {
+    ++this.goldScore;
+  }
+
+  subGoldScore() {
+    --this.goldScore;
+  }
+
+  addBlackScore() {
+    ++this.blackScore;
+  }
+
+  subBlackScore() {
+    --this.blackScore;
   }
 
 }
