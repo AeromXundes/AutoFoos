@@ -4,16 +4,16 @@ import { Injectable } from '@angular/core';
 export class GameStateService {
 
 
-  constructor() { };
+  constructor() {};
 
-  gameState: {
-    startingDate,
-    endingDate,
+  gameState = {
+    startingDate: 0,
+    endingDate: 0,
     gold: {
       offensePlayer: '',
       defensePlayer: '',
       score: 0,
-    }
+    },
     black: {
       offensePlayer: '',
       defensePlayer: '',
@@ -54,14 +54,19 @@ export class GameStateService {
             black: {offense: this.gameState.black.offensePlayer,
                     defense: this.gameState.black.defensePlayer}}
   }
+
+
   getScore() {
+    console.log(this.gameState);
     return {gold: this.gameState.gold.score, black: this.gameState.black.score};
   }
+
+
+
   getElapsedTime(): {minutes,  seconds} {
     var currentTime = Date.now();
     var delta = currentTime - this.gameState.startingDate;
     delta /= 1000; //convert to seconds
-
     return {minutes: Math.floor(delta/60), seconds: delta % 60};
   }
   
