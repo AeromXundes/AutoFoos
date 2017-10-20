@@ -1,46 +1,15 @@
-.container {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-    // background: url(../../../assets/background.jpg) no-repeat center fixed;
-    // -webkit-background-size: cover; /* pour anciens Chrome et Safari */
-    // background-size: cover; /* version standardisée */
-  
-    .title {
-      color: white;
-      margin:0;
-      padding:50px 20px;
-    }
-  
-  }
+
   
   #submit {
-      width: 600px;
-      height: 200px;
-      top: 100px;
-      left: 100px;
-      margin: 0px;
-      padding: 0px;
+      width: 75%;
+      height: 40%;
   }
   #discard {
-      width: 200px;
-      height: 100px;
-      top: 340px;
-      left: 600px;
-      margin: 0px;
-      padding: 0px;
+      width: 25%;
+      height: 20%;
   }
   #back {
-      width: 200px;
-      height: 100px;
-      top: 340px;
-      left: 0px;
-      margin: 0px;
-      padding: 0px;
+    width: 25%;
+    height: 20%;
   }
 
-  mat-grid-tile {
-    background: lightblue;
-  }
