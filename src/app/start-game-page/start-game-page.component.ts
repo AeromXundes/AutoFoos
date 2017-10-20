@@ -15,10 +15,30 @@ export class StartGamePageComponent implements OnInit {
   ngOnInit() {
   }
 
+  playerSelectionIsValid() {
+    var players = this._gameState.getPlayers();
+    if (players.gold.offense === '' ||
+        players.gold.defense === '' ||
+        players.black.offense === ''||
+        players.black.defense === '') {
+          console.log('something is empty');
+          return false;
+    }
+    if (players.gold.defense === players.black.offense ||
+        players.gold.defense === players.black.defense ||
+        players.gold.offense === players.black.offense ||
+        players.gold.offense === players.black.defense) {
+          console.log('player in both teams');
+          return false;
+    }
+    return true;
+  }
 
   startGame() {
-    this._gameState.start();
-    this.router.navigateByUrl('scoreboard');
-
+    if (this.playerSelectionIsValid())
+    {
+      this._gameState.start();
+      this.router.navigateByUrl('scoreboard');
+    }
   }
 }
