@@ -2,15 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { GameStateService  } from '../../game-state.service'
 import { ElectronService } from '../../providers/electron.service'
 
-
-
-@Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
-})
-
-
 export class HomeComponent implements OnInit {
   public goldScore = 0;
   public blackScore = 0;
