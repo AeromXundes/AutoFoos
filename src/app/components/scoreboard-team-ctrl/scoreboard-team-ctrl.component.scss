@@ -1,11 +1,11 @@
-.score {
-    font-size: 72px;
-    font-weight: bold;
-}
-
 mat-card-header{
   text-align: center;
   display: block;
+}
+
+.score {
+    font-size: 72px;
+    font-weight: bold;
 }
 
 button {
@@ -15,4 +15,12 @@ button {
 
 .team-name {
   font-size: 24px;
+}
+
+.swap-button {
+  float: right;
+}
+
+.end {
+  clear: both;
 }
