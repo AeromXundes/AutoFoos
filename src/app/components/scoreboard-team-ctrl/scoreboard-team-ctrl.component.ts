@@ -22,9 +22,38 @@ export class ScoreboardTeamCtrlComponent implements OnInit {
   constructor(private _gameState: GameStateService) { }
 
   ngOnInit() {
+    this.setPlayers();
   }
 
-  
+  offensePlayer = '';
+  defensePlayer = '';
+
+  setPlayers() {
+    if (this.teamName === 'Gold') {
+      this.offensePlayer = this._gameState.getPlayers().gold.offense;
+      this.defensePlayer = this._gameState.getPlayers().gold.defense;
+    }
+    else if (this.teamName === 'Black') {
+      this.offensePlayer = this._gameState.getPlayers().black.offense;
+      this.defensePlayer = this._gameState.getPlayers().black.defense;
+    }
+    else {
+      throw 'bad team name';
+    }
+  }
+
+  swap() {
+    if (this.teamName === 'Gold') {
+      this._gameState.goldSwappedPositions();
+    }
+    else if (this.teamName === 'Black') {
+      this._gameState.blackSwappedPositions();
+    }
+    else {
+      throw 'Bad team name';
+    }
+    this.setPlayers();
+  }
 
   set score(val: number) {
     this.currentScore = val;
