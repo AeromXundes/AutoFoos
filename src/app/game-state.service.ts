@@ -13,36 +13,44 @@ export class GameStateService {
   };
 
   //Those variables are state information used for the RPI's display
-  startingPositions = {};
+  startingPositions = {gold: {offense: '', defense: ''},  black: {offense: '', defense: ''}};
   currentPositions = {gold: {offense: '', defense: ''},  black: {offense: '', defense: ''}};
   startTime;
   score = {gold: 0, black: 0};
 
-  start(pos) {
-    this.startingPositions = pos;
-    this.currentPositions = pos;
+  start() {
     this.addEvent('start');
     this.startTime = Date.now();
   }
   end() {
     this.addEvent('end');
+    console.log(this.getEventsList());
+  }
+  
+  setGoldOffense(name){
+    this.startingPositions.gold.offense = name;
+  }
+  setGoldDefense(name){
+    this.startingPositions.gold.defense = name;
+  }
+  setBlackOffense(name){
+    this.startingPositions.black.offense = name;
+  }
+  setBlackDefense(name){
+    this.startingPositions.black.defense = name;
   }
 
   getEventsList() {
     return {startingPositions: this.startingPositions, eventsList: this.eventsList};
   };
-  /*'goldScored' and 'cancelGoldGoal' are a better interface than eg 'incrementGoldScore()'
-  Because it is more  future proof (eg adding sensors or recording time will involve other operations than just an increment)
-  */
+  
   goldScored() {
     this.addEvent('g+');
     this.score.gold++;
-    console.log(this.getEventsList());
   };
   cancelGoldGoal() {
     this.addEvent('g-');
     this.score.gold--;
-    console.log(this.getEventsList());
   };
   goldSwappedPositions() {
     this.addEvent('gs');
@@ -53,12 +61,10 @@ export class GameStateService {
   blackScored() {
     this.addEvent('b+');
     this.score.black++;
-    console.log(this.getEventsList());
   }
   cancelBlackGoal() {
     this.addEvent('b-');
     this.score.black--;
-    console.log(this.getEventsList());
   }
   blackSwappedPositions() {
     this.addEvent('bs');
@@ -84,7 +90,6 @@ export class GameStateService {
   }
 
   getScore() {
-    console.log(this.score);
     return this.score;
   }
 

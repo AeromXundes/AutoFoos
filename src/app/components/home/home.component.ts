@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
-    this._gameState.start(null);
+    this._gameState.start();
     this._gameState.goldScored();
     this._gameState.goldScored();
     this._gameState.goldScored();

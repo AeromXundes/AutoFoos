@@ -17,7 +17,7 @@ export class StartGamePageComponent implements OnInit {
 
 
   startGame() {
-    this._gameState.start({gold: {offense: 'ABC', defense: 'DEF'}, black: {offense: 'GHI', defense: 'KLM'}});
+    this._gameState.start();
     this.router.navigateByUrl('scoreboard');
 
   }
