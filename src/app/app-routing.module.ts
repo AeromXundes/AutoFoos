@@ -9,14 +9,16 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
     {
-        path: '',
-        //component: SubmissionPageComponent
+        path: 'start',
         component: StartGamePageComponent
     },
     {
         path: 'scoreboard',
         component: ScoreboardComponent
-
+    },
+    {
+        path: 'submit',
+        component: SubmissionPageComponent
     }
 ];
 

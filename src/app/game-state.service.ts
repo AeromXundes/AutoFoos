@@ -29,15 +29,19 @@ export class GameStateService {
   
   setGoldOffense(name){
     this.startingPositions.gold.offense = name;
+    this.currentPositions.gold.offense = name;
   }
   setGoldDefense(name){
     this.startingPositions.gold.defense = name;
+    this.currentPositions.gold.defense = name;
   }
   setBlackOffense(name){
     this.startingPositions.black.offense = name;
+    this.currentPositions.black.offense = name;
   }
   setBlackDefense(name){
     this.startingPositions.black.defense = name;
+    this.currentPositions.black.defense = name;
   }
 
   getEventsList() {
