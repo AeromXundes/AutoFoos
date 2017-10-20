@@ -16,6 +16,8 @@ export class ScoreboardComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  
   end() {
     this._gameState.pause();
     this.router.navigateByUrl('submit');
