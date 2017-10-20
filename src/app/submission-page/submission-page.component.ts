@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GameStateService  } from '../game-state.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-submission-page',
@@ -8,7 +9,7 @@ import { GameStateService  } from '../game-state.service'
 })
 export class SubmissionPageComponent implements OnInit {
 
-  constructor(private _gameState: GameStateService) { }
+  constructor(private _gameState: GameStateService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -16,14 +17,15 @@ export class SubmissionPageComponent implements OnInit {
   submit() {
     this._gameState.resume();
     this._gameState.end();
-    console.log(this._gameState.getEventsList());
+    this.router.navigateByUrl('');
   }
 
   discard() {
-
+    this.router.navigateByUrl('');
   }
 
   cancel() {
     this._gameState.resume();
+    this.router.navigateByUrl('scoreboard');
   }
 }
