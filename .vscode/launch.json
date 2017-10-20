@@ -1,0 +1,53 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Electron (Live Reload)",
+            "type": "node",
+            "request": "launch",
+            "stopOnEntry": false,
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+            "windows": {
+                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
+            },
+            "runtimeArgs": [
+                "./dist",
+                "--server",
+                "--enable-logging",
+                "--harmony_async_await",
+                "--remote-debugging-port=9123"
+            ],
+            "env": {
+                "SGCA_LIVE_RELOAD": "true"
+            },
+            "sourceMaps": true,
+            "protocol": "inspector"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome",
+            "url": "http://localhost:4200",
+            "webRoot": "${workspaceRoot}",
+            "sourceMaps": true,
+            "port": 9222
+        },
+        {
+            "type": "chrome",
+            "request": "attach",
+            "name": "Attach to Renderer",
+            "diagnosticLogging": true,
+            "webRoot": "${workspaceRoot}",
+            "sourceMaps": true,
+            "port": 9123
+        }
+    ],
+    "compounds": [
+        {
+            "name": "AutoFoos - Gamestation",
+            "configurations": ["Electron (Live Reload)", "Attach to Renderer"],
+            "preLaunchTask": "Debug Electron Build"
+        }
+    ]
+}

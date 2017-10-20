@@ -1,0 +1,8 @@
+<mat-grid-list cols="2" row-height="420px" >
+  <mat-grid-tile>
+    <app-scoreboard-team-ctrl [(score)]="goldScore" teamName="Gold"></app-scoreboard-team-ctrl>
+  </mat-grid-tile>  
+  <mat-grid-tile>
+      <app-scoreboard-team-ctrl [(score)]="blackScore" teamName="Black"></app-scoreboard-team-ctrl>      
+  </mat-grid-tile>
+</mat-grid-list>
