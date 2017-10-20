@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MatButtonModule, MatCardModule, MatFormFieldModule, MatGridListModule,
-         MatIconModule, MatSelectModule, MatTabsModule} from '@angular/material';
+         MatIconModule, MatSelectModule, MatTabsModule, MatToolbarModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
@@ -41,7 +41,8 @@ import { DefensePlayerComponent } from './defense-player/defense-player.componen
     MatSelectModule,
     MatTabsModule,
     MatFormFieldModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatToolbarModule
   ],
   providers: [ElectronService],
   bootstrap: [AppComponent]
