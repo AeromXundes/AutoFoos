@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { GameStateService  } from '../../game-state.service'
 
 @Component({
   selector: 'app-scoreboard-team-ctrl',
@@ -6,6 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./scoreboard-team-ctrl.component.scss']
 })
 export class ScoreboardTeamCtrlComponent implements OnInit {
+
   private currentScore: number;
 
   @Input() teamName: string;
@@ -17,7 +19,7 @@ export class ScoreboardTeamCtrlComponent implements OnInit {
   @Output()
   scoreChange = new EventEmitter();
 
-  constructor() { }
+  constructor(private _gameState: GameStateService) { }
 
   ngOnInit() {
   }
@@ -29,12 +31,30 @@ export class ScoreboardTeamCtrlComponent implements OnInit {
 
   addScore() {
     if (this.score < 8) {
+      if (this.teamName === 'Gold') {
+        this._gameState.goldScored();
+      }
+      else if (this.teamName === 'Black') {
+        this._gameState.blackScored();
+      }
+      else {
+        throw 'problem with team name';
+      }
       ++this.score;
     }
   }
 
   subScore() {
     if (this.score > 0) {
+      if (this.teamName === 'Gold') {
+        this._gameState.cancelGoldGoal();
+      }
+      else if (this.teamName === 'Black') {
+        this._gameState.cancelBlackGoal();
+      }
+      else {
+        throw 'problem with team name';
+      }
       --this.score;
     }
   }

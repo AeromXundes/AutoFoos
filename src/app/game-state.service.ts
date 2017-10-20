@@ -37,10 +37,12 @@ export class GameStateService {
   goldScored() {
     this.addEvent('g+');
     this.score.gold++;
+    console.log(this.getEventsList());
   };
   cancelGoldGoal() {
     this.addEvent('g-');
     this.score.gold--;
+    console.log(this.getEventsList());
   };
   goldSwappedPositions() {
     this.addEvent('gs');
@@ -51,10 +53,12 @@ export class GameStateService {
   blackScored() {
     this.addEvent('b+');
     this.score.black++;
+    console.log(this.getEventsList());
   }
   cancelBlackGoal() {
     this.addEvent('b-');
     this.score.black--;
+    console.log(this.getEventsList());
   }
   blackSwappedPositions() {
     this.addEvent('bs');
