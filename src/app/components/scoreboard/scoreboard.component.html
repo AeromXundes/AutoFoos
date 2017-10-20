@@ -4,15 +4,9 @@
   </h1>
 
 </div> -->
-<mat-grid-list cols="3" row-height="420px" >
-  <mat-grid-tile colspan=2>
-    <mat-card>
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title class="score">{{goldScore}}</mat-card-title>
-        <mat-card-subtitle>Gold Team</mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
+<mat-grid-list cols="2" row-height="420px" >
+  <mat-grid-tile>
+    <app-scoreboard-team-ctrl [(score)]="goldScore" teamName="Gold"></app-scoreboard-team-ctrl>
   </mat-grid-tile>  
   <mat-grid-tile>
     <mat-card>
@@ -23,13 +17,8 @@
       </mat-card-header>
     </mat-card>
   </mat-grid-tile>
+
   <!-- <mat-grid-tile>
-      <div class="underneath">
-          <button mat-raised-button color="primary" (click)="addGoldScore()">+</button>    
-          <button mat-raised-button color="warn" (click)="subGoldScore()">-</button> 
-        </div>
-    </mat-grid-tile>  
-  <mat-grid-tile>
       <div class="underneath">
         <button mat-raised-button color="primary" (click)="addBlackScore()">+</button>    
         <button mat-raised-button color="warn" (click)="subBlackScore()">-</button>  

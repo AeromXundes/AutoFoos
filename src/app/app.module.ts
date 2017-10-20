@@ -14,11 +14,13 @@ import { AppRoutingModule } from './app-routing.module';
 
 
 import { ElectronService } from './providers/electron.service';
+import { ScoreboardTeamCtrlComponent } from './components/scoreboard-team-ctrl/scoreboard-team-ctrl.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ScoreboardComponent
+    ScoreboardComponent,
+    ScoreboardTeamCtrlComponent
   ],
   imports: [
     BrowserModule,
