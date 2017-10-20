@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GameStateService  } from '../game-state.service'
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-start-game-page',
@@ -7,12 +9,16 @@ import { GameStateService  } from '../game-state.service'
   styleUrls: ['./start-game-page.component.scss']
 })
 export class StartGamePageComponent implements OnInit {
-  constructor(private _gameState: GameStateService) { }
+  constructor(private _gameState: GameStateService, private router: Router) { }
+
 
   ngOnInit() {
   }
 
-  startGameClick() {
+
+  startGame() {
     this._gameState.start({gold: {offense: 'ABC', defense: 'DEF'}, black: {offense: 'GHI', defense: 'KLM'}});
+    this.router.navigateByUrl('scoreboard');
+
   }
 }
