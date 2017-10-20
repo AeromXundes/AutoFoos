@@ -19,8 +19,7 @@ import { SubmissionPageComponent } from './submission-page/submission-page.compo
 import { ScoreboardTeamCtrlComponent } from './components/scoreboard-team-ctrl/scoreboard-team-ctrl.component';
 import { StartGamePageComponent } from './start-game-page/start-game-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { OffensePlayerComponent } from './offense-player/offense-player.component';
-import { DefensePlayerComponent } from './defense-player/defense-player.component';
+import { PlayerComponent } from './player/player.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +28,8 @@ import { DefensePlayerComponent } from './defense-player/defense-player.componen
     ScoreboardComponent,
     ScoreboardTeamCtrlComponent,
     StartGamePageComponent,
-    OffensePlayerComponent,
-    DefensePlayerComponent,
+    PlayerComponent,
+    PlayerComponent,
   ],
   imports: [
     BrowserModule,
