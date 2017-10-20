@@ -24,6 +24,8 @@ export class ScoreboardTeamCtrlComponent implements OnInit {
   ngOnInit() {
   }
 
+  
+
   set score(val: number) {
     this.currentScore = val;
     this.scoreChange.emit(this.currentScore);
