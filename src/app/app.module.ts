@@ -15,20 +15,21 @@ import { AppRoutingModule } from './app-routing.module';
 
 
 import { ElectronService } from './providers/electron.service';
+import { SubmissionPageComponent } from './submission-page/submission-page.component';
 import { ScoreboardTeamCtrlComponent } from './components/scoreboard-team-ctrl/scoreboard-team-ctrl.component';
 import { StartGamePageComponent } from './start-game-page/start-game-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { OffensePlayerComponent } from './offense-player/offense-player.component';
-import { DefensePlayerComponent } from './defense-player/defense-player.component';
+import { PlayerComponent } from './player/player.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    SubmissionPageComponent,
     ScoreboardComponent,
     ScoreboardTeamCtrlComponent,
     StartGamePageComponent,
-    OffensePlayerComponent,
-    DefensePlayerComponent
+    PlayerComponent,
+    PlayerComponent,
   ],
   imports: [
     BrowserModule,

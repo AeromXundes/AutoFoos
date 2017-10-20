@@ -6,73 +6,97 @@ export class GameStateService {
 
   constructor() {};
 
-  gameState = {
-    startingDate: 0,
-    endingDate: 0,
-    gold: {
-      offensePlayer: '',
-      defensePlayer: '',
-      score: 0,
-    },
-    black: {
-      offensePlayer: '',
-      defensePlayer: '',
-      score: 0,
-    }
+  eventsList = [];
+
+  addEvent(e) {
+    this.eventsList.push( {time: Date.now(), event: e});
   };
 
+  //Those variables are state information used for the RPI's display
+  startingPositions = {gold: {offense: '', defense: ''},  black: {offense: '', defense: ''}};
+  currentPositions = {gold: {offense: '', defense: ''},  black: {offense: '', defense: ''}};
+  startTime;
+  score = {gold: 0, black: 0};
+
   start() {
-    this.gameState.startingDate = Date.now();
+    this.addEvent('start');
+    this.startTime = Date.now();
   }
   end() {
-    this.gameState.endingDate = Date.now();
+    this.addEvent('end');
+    console.log(this.getEventsList());
   }
-  /*'goldScored' and 'cancelGoldGoal' are a better interface than eg 'incrementGoldScore()'
-  Because it is more  future proof (eg adding sensors or recording time will involve other operations than just an increment)
-  */
+  
+  setGoldOffense(name){
+    this.startingPositions.gold.offense = name;
+  }
+  setGoldDefense(name){
+    this.startingPositions.gold.defense = name;
+  }
+  setBlackOffense(name){
+    this.startingPositions.black.offense = name;
+  }
+  setBlackDefense(name){
+    this.startingPositions.black.defense = name;
+  }
+
+  getEventsList() {
+    return {startingPositions: this.startingPositions, eventsList: this.eventsList};
+  };
+  
   goldScored() {
-    this.gameState.gold.score++;
+    this.addEvent('g+');
+    this.score.gold++;
   };
   cancelGoldGoal() {
-    this.gameState.gold.score--;
+    this.addEvent('g-');
+    this.score.gold--;
   };
   goldSwappedPositions() {
-    //TODO
+    this.addEvent('gs');
+    var tmp = this.currentPositions.gold.offense;
+    this.currentPositions.gold.offense = this.currentPositions.gold.defense;
+    this.currentPositions.gold.defense = tmp;
   }
   blackScored() {
-    this.gameState.black.score++;
+    this.addEvent('b+');
+    this.score.black++;
   }
   cancelBlackGoal() {
-    this.gameState.black.score--;
+    this.addEvent('b-');
+    this.score.black--;
   }
   blackSwappedPositions() {
-    //TODO
+    this.addEvent('bs');
+    var tmp = this.currentPositions.black.offense;
+    this.currentPositions.black.offense = this.currentPositions.black.defense;
+    this.currentPositions.black.defense = tmp;
   }
-  setPlayers(players) {
-    this.gameState.gold.offensePlayer = players.gold.offense;
-    this.gameState.gold.defensePlayer = players.gold.defense;
-    this.gameState.black.offensePlayer = players.black.offense;
-    this.gameState.black.defensePlayer = players.black.defense;
+  
+  totalTimeInPause = 0;
+  currentPause = 0;
+  pause() {
+    this.addEvent('pause');
+    this.currentPause = Date.now();
+  }
+  resume() {
+    this.addEvent('resume');
+    var thisPause = Date.now() - this.currentPause;
+    this.totalTimeInPause += thisPause;
   }
   
   getPlayers() {
-    return {gold:  {offense: this.gameState.gold.offensePlayer,
-                    defense: this.gameState.gold.defensePlayer},
-            black: {offense: this.gameState.black.offensePlayer,
-                    defense: this.gameState.black.defensePlayer}}
+    return this.currentPositions;
   }
-
 
   getScore() {
-    console.log(this.gameState);
-    return {gold: this.gameState.gold.score, black: this.gameState.black.score};
+    return this.score;
   }
-
-
 
   getElapsedTime(): {minutes,  seconds} {
     var currentTime = Date.now();
-    var delta = currentTime - this.gameState.startingDate;
+    var delta = currentTime - this.startTime;
+    delta -= this.totalTimeInPause;
     delta /= 1000; //convert to seconds
     return {minutes: Math.floor(delta/60), seconds: delta % 60};
   }
