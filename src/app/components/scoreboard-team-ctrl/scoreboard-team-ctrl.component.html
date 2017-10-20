@@ -12,9 +12,9 @@
 
 
 <div>
-  <mat-card>
+  <mat-card (click)="addScore()">
     <mat-card-header>
-      <mat-card-title class="score score-card" (click)="addScore()">{{score}}</mat-card-title>
+      <mat-card-title class="score score-card" >{{score}}</mat-card-title>
       <mat-card-subtitle class="score-card team-name">Team {{teamName}}</mat-card-subtitle>
     </mat-card-header>
   </mat-card>
