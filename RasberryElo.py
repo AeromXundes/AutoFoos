@@ -27,12 +27,12 @@ def update(winO, winD, losO, losD, score):
     currS = g.readlines()
     i = 0
     while i < len(currS):
-        print(i)
+        #print(i)
         currS[i] = currS[i].split(",")
         #currS[i].pop()
         #get rid off the currS new lines
-        print(len(currS[i]))
-        print(currS[i])
+        #print(len(currS[i]))
+        #print(currS[i])
         if currS[i][0] == "":
             del currS[i]
         else:
@@ -134,7 +134,7 @@ def update(winO, winD, losO, losD, score):
     LosChange = .8*TotLos
     DisLos = .4 *TotLos
 
-
+    """
     print(str(gameStandings[0][0]) + " and " + str(gameStandings[1][0]) + " beat " + str(gameStandings[2][0]) + " and " + str(gameStandings[3][0]) + " by "
         + str(8 - lossScore) + " points.")
 
@@ -143,7 +143,7 @@ def update(winO, winD, losO, losD, score):
 
     print("Winners Change " + str(WinChange))
     print("Losers Change" + str(LosChange))
-
+    """
     #Adjust the main points
     newGameStandings = copy.deepcopy(gameStandings)
     newGameStandings[0][1] = newGameStandings[0][1] + WinChange
@@ -152,10 +152,10 @@ def update(winO, winD, losO, losD, score):
     newGameStandings[3][1] = newGameStandings[3][1] + LosChange
     #Adjust O/D points
     newGameStandings[0][3] = newGameStandings[0][3] + WinChange
-    newGameStandings[2][3] = newGameStandings[2][3] - WinChange
+    newGameStandings[2][3] = newGameStandings[2][3] + LosChange
 
     newGameStandings[1][4] = newGameStandings[1][4] + WinChange
-    newGameStandings[3][4] = newGameStandings[3][4] - WinChange
+    newGameStandings[3][4] = newGameStandings[3][4] + LosChange
 
     #print("NEW GAME STANDINGS")
     #print(newGameStandings)
@@ -202,7 +202,17 @@ def update(winO, winD, losO, losD, score):
             if currS[i][1] > thirdP:
                 currS[i][1] = currS[i][1] + evenLoss
 
-                currS[i]
+                #case where O and D are both above thridP
+                if currS[i][2] > thirdP and currS[i][3] > thirdP:
+                    currS[i][2] = currS[i][2] + 2*evenLoss*(currS[i][2] - thirdP)/(currS[i][2]+ currS[i][3] - 2*thirdP)
+                    currS[i][3] = currS[i][3] + 2*evenLoss*(currS[i][3] - thirdP)/(currS[i][2]+ currS[i][3] - 2*thirdP)
+                elif currS[i][2] > thirdP:
+                    currS[i][2] = currS[i][2] + 2*evenLoss
+                elif currS[i][3] > thirdP:
+                    currS[i][3] = currS[i][3] + 2*evenLoss
+                else:
+                    currS[i][2] = currS[i][2] + evenLoss
+                    currS[i][3] = currS[i][3] + evenLoss
                 #print(sumOverThirdP)
                 sumOverThirdP = sumOverThirdP + (currS[i][1] - thirdP)
                 #print(sumOverThirdP)
