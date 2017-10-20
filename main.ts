@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, globalShortcut, screen } from 'electron';
 import * as path from 'path';
 
 let win, serve;
@@ -20,7 +20,8 @@ function createWindow() {
     x: 0,
     y: 0,
     width: 800,
-    height: 400
+    height: 420,
+    frame: false
   });
 
   // and load the index.html of the app.
@@ -46,6 +47,11 @@ try {
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
   app.on('ready', createWindow);
+  app.on('ready', () => {
+    globalShortcut.register('CommandOrControl+Q', () => {
+      app.quit();
+    })
+  });
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {

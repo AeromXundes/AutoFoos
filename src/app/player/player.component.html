@@ -1,0 +1,10 @@
+<form>
+    <mat-form-field>
+      <mat-select placeholder="select player name" >
+        <mat-option *ngFor="let player of players" [value]="player.viewName" (click)="selection(player.viewName, position)">
+        {{player.viewName}}
+        </mat-option>
+        </mat-select>
+      </mat-form-field>
+    <p>{{position}} </p>
+  </form>

@@ -1,0 +1,23 @@
+
+
+<mat-grid-list cols="2" rowHeight="2:1">
+  <mat-grid-tile>
+    <app-player position="gold offense"></app-player>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <app-player position="gold defense"></app-player>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <app-player position="black offense"></app-player>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <app-player position="black defense"></app-player>
+  </mat-grid-tile>
+</mat-grid-list>
+
+
+<mat-card-title class="wrapper">
+  <button mat-raised-button color="primary" (click)="startGame()">
+    <h4>Start Game</h4>
+  </button>
+</mat-card-title>
