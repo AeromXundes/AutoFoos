@@ -1,2 +1,23 @@
-app-scoreboard-team-ctrl {
+.score-panel {
+}
+
+.score-cell {
+  width: 39%;
+}
+
+.content-cell {
+  display: inline-block;  
+}
+
+// .gold-cell {
+//   background-color: rgba(255, 213, 0, 0.5);
+// }
+
+// .black-cell {
+//   background-color: rgba(0, 0, 0, 0.473);
+// }
+
+
+.button-panel {
+  width: 20%;
 }

@@ -20,7 +20,7 @@ function createWindow() {
     x: 0,
     y: 0,
     width: 800,
-    height: 420,
+    height: 480,
     frame: false
   });
 
