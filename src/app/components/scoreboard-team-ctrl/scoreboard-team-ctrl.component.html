@@ -1,7 +1,7 @@
 
 <div class="player-group">
   <div class="swap-button">
-      <button mat-fab><i class="material-icons" (click)="swap()">swap_vert</i></button>
+      <button mat-fab (click)="swap()"><i class="material-icons">swap_vert</i></button>
   </div>
   <div class="player-names">
       <div class="mat-title">Offense: {{offensePlayer}}</div>
@@ -14,7 +14,7 @@
 <div>
   <mat-card>
     <mat-card-header>
-      <mat-card-title class="score score-card">{{score}}</mat-card-title>
+      <mat-card-title class="score score-card" (click)="addScore()">{{score}}</mat-card-title>
       <mat-card-subtitle class="score-card team-name">Team {{teamName}}</mat-card-subtitle>
     </mat-card-header>
   </mat-card>

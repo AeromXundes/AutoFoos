@@ -105,6 +105,13 @@ export class GameStateService {
     return {minutes: Math.floor(delta/60), seconds: delta % 60};
   }
   
-
+  reset() {
+    this.score.gold = 0;
+    this.score.black = 0;
+    this.eventsList = [];
+    this.startTime = 0;
+    this.totalTimeInPause = 0;
+    this.currentPause = 0;
+  }
 
 }
