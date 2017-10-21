@@ -35,8 +35,7 @@ export class StartGamePageComponent implements OnInit {
   }
 
   startGame() {
-    if (this.playerSelectionIsValid())
-    {
+    if (this.playerSelectionIsValid()) {
       this._gameState.start();
       this.router.navigateByUrl('scoreboard');
     }
