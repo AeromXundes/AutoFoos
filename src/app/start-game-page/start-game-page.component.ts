@@ -26,9 +26,11 @@ export class StartGamePageComponent implements OnInit {
     }
     if (players.gold.defense === players.black.offense ||
         players.gold.defense === players.black.defense ||
+        players.gold.defense === players.gold.offense  ||
         players.gold.offense === players.black.offense ||
-        players.gold.offense === players.black.defense) {
-          console.log('player in both teams');
+        players.gold.offense === players.black.defense ||
+        players.black.defense === players.black.offense) {
+          console.log('same player in several positions');
           return false;
     }
     return true;

@@ -1,13 +1,10 @@
 {
-  "name": "angular-electron",
-  "version": "1.9.0",
-  "description": "Angular 4 with Electron (Typescript + SASS + Hot Reload)",
-  "homepage": "https://github.com/maximegris/angular-electron",
-  "author": {
-    "name": "Maxime GRIS",
-    "email": "maxime.gris@gmail.com"
-  },
+  "name": "autofoos",
+  "version": "0.0.1",
+  "description": "AutoFoos automated foosball scoring system. Uses Angular 4 with Electron (Typescript + SASS + Hot Reload)",
+  "homepage": "https://github.com/AeromXundes/AutoFoos",
   "keywords": [
+    "foosball",
     "angular",
     "electron",
     "typescript",
@@ -21,8 +18,8 @@
     "start": "npm-run-all --parallel webpack:watch electron:serve",
     "webpack:watch": "webpack --watch",
     "start:web": "webpack-dev-server --content-base . --port 4200 --inline",
-    "build:electron:main": "tsc main.ts --outDir dist && copyfiles package.json dist && cd dist && npm install --prod && cd ..",
-    "build:electron:main:debug": "tsc main.ts --outDir dist --sourceMap && copyfiles package.json dist && cd dist && npm install --prod && cd ..",    
+    "build:electron:main": "tsc main.ts --outDir dist && copyfiles package.json playersList.txt dist && cd dist && npm install --prod && cd ..",
+    "build:electron:main:debug": "tsc main.ts --outDir dist --sourceMap && copyfiles package.json playersList.txt dist && cd dist && npm install --prod && cd ..",
     "build": "webpack --display-error-details && npm run build:electron:main",
     "build:prod": "cross-env NODE_ENV=production npm run build",
     "electron:serve": "npm run build:electron:main && electron ./dist --serve",
@@ -30,6 +27,7 @@
     "electron:dev": "npm run build && electron ./dist",
     "electron:prod": "npm run build:prod && electron ./dist",
     "electron:linux": "npm run build:prod && node package.js --asar --platform=linux --arch=x64",
+    "electron:raspi": "npm run build:prod && node package.js --asar --platform=linux --arch=armv7l",
     "electron:windows": "npm run build:prod && node package.js --asar --platform=win32 --arch=ia32",
     "electron:mac": "npm run build:prod && node package.js --asar --platform=darwin --arch=x64",
     "test": "karma start ./karma.conf.js",
@@ -104,5 +102,5 @@
     "webpack": "3.6.0",
     "webpack-dev-server": "2.8.2"
   },
-  "license": "SEE LICENSE IN LICENSE.md"
+  "license": "MIT"
 }

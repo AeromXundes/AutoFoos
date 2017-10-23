@@ -23,6 +23,7 @@ import { StartGamePageComponent } from './start-game-page/start-game-page.compon
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PlayerSelectionComponent } from './player-selection/player-selection.component';
 import { HallOfFameComponent } from './hall-of-fame/hall-of-fame.component';
+import { DiscardConfirmationComponent } from './discard-confirmation/discard-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HallOfFameComponent } from './hall-of-fame/hall-of-fame.component';
     ScoreboardTeamCtrlComponent,
     StartGamePageComponent,
     PlayerSelectionComponent,
-    HallOfFameComponent
+    HallOfFameComponent,
+    DiscardConfirmationComponent
   ],
   imports: [
     BrowserModule,

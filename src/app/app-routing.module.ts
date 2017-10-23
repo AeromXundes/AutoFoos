@@ -1,6 +1,7 @@
 
 import { HomeComponent } from './components/home/home.component';
 import { SubmissionPageComponent } from './submission-page/submission-page.component';
+import { DiscardConfirmationComponent } from './discard-confirmation/discard-confirmation.component';
 import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
 
 import { StartGamePageComponent } from './start-game-page/start-game-page.component';
@@ -19,6 +20,10 @@ const routes: Routes = [
     {
         path: 'submit',
         component: SubmissionPageComponent
+    },
+    {
+        path: 'discard-confirmation',
+        component: DiscardConfirmationComponent
     }
 ];
 
