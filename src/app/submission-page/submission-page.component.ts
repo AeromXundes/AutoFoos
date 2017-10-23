@@ -21,7 +21,7 @@ export class SubmissionPageComponent implements OnInit {
   }
 
   discard() {
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('discard-confirmation');
   }
 
   cancel() {

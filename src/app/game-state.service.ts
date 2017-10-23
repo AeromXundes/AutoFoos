@@ -17,14 +17,25 @@ export class GameStateService {
   currentPositions = {gold: {offense: '', defense: ''},  black: {offense: '', defense: ''}};
   startTime;
   score = {gold: 0, black: 0};
-
+  useAWS = false;
   start() {
+    this.reset();
     this.addEvent('start');
     this.startTime = Date.now();
   }
   end() {
     this.addEvent('end');
     console.log(this.getEventsList());
+    if (this.useAWS) {
+      //todo
+    }
+    else {
+      var spawn = require('child_process').spawn;
+      var jsonString = JSON.stringify(this.getEventsList());
+      console.log('jsonString is:');
+      console.log(jsonString);
+      var py = spawn('python', ['jsonParse.py', jsonString]);
+    }
   }
   
   setGoldOffense(name){
@@ -105,6 +116,13 @@ export class GameStateService {
     return {minutes: Math.floor(delta/60), seconds: delta % 60};
   }
   
-
+  reset() {
+    this.score.gold = 0;
+    this.score.black = 0;
+    this.eventsList = [];
+    this.startTime = 0;
+    this.totalTimeInPause = 0;
+    this.currentPause = 0;
+  }
 
 }
