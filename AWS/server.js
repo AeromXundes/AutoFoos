@@ -44,7 +44,7 @@ webInterface.post('/update_data', (req, res) => {
   console.log('Receiving new match record:')
   console.log(req.body);
 
-  var py = spawn('python', ['RasberryElo.py', JSON.stringify(updates)]);
+  var py = spawn('python', ['jsonParse.py', JSON.stringify(updates)]);
   py.on('exit', () => {
     fs.createReadStream(inputFile)
       .pipe(es.split())
@@ -55,6 +55,7 @@ webInterface.post('/update_data', (req, res) => {
       .on('end', () => {
          // TODO: this is temporary to generate index.html
          console.log('Sending updated ranking')
+         console.log(msg)
          res.send(msg)
       }) // on('end')
   })
