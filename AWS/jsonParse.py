@@ -102,6 +102,8 @@ if __name__ == '__main__':
 										{"event": "g+", "time": 113},
 										{"event": "end", "time": 114}]
 							})
+
+	jsonString = argv[1]
 	jsonData = json.loads(jsonString)
 
 	#find the arguments for the algorithm
@@ -111,12 +113,15 @@ if __name__ == '__main__':
 	f = open("jsonLog.csv", "a")
 	f.write(jsonString + "\n")
 	f.close()
+
+	#updates the rankings and currentStanings.csv
 	os.system("python rasberryElo.py " + " ".join(args))
 
-	#append game log
+	#append game log (just winners and losers)
 	f = open("gameLog.csv", "a")
 	f.write(",".join(args) + "\n")
 	f.close()
 
+	#converts currentStandings.csv to a index.html
 	os.system("python standingsToHtml.py")
 
