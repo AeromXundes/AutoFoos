@@ -18,7 +18,7 @@ appInterface.use(bodyParser.json());
 webInterface.use(bodyParser.json());
 
 // Handle /current_ranking
-webInterface.get('/current_ranking', (req, res) => {
+appInterface.get('/current_ranking', (req, res) => {
   var msg = ""
   const inputFile = 'currentStandings.csv'
 
@@ -36,7 +36,7 @@ webInterface.get('/current_ranking', (req, res) => {
 });
 
 // Handle /update_data
-webInterface.post('/update_data', (req, res) => {
+appInterface.post('/update_data', (req, res) => {
   var msg = ""
   const inputFile = 'currentStandings.csv'
   const updates = req.body;
