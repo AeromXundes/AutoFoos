@@ -13,42 +13,48 @@ import 'rxjs/add/observable/of'
 
 export class HallOfFameComponent implements OnInit {
 
+  private dataSource: PlayerDataSource;
   constructor(private papa: PapaParseService) {
   }
 
   ngOnInit() {
   }
 
+  
   showTopPlayers() {
     this.papa.parse("https://raw.githubusercontent.com/AeromXundes/AutoFoos/master/currentStandings.csv", {
       download: true,
       complete: function(results) {
         for(var k = 1; k <= 10; ++k){
           var temp = results.data[k][0].split(",");
-          //var obj = {name: temp[0], rating: temp[1], offense: temp[2], defense: temp[3]};
-          //jsonData.push(obj);
-          jsonData.push(new player(temp[0], temp[1], temp[2], temp[3]));
+          jsonData.push(new player(temp[0], temp[1], temp[2], temp[5], temp[3], temp[6]));
         }
       }
     });
+    this.dataSource = new PlayerDataSource();    
     console.log(jsonData);
   }
 
-  displayedColumns = ['name', 'rating', 'offense', 'defense'];
-  dataSource = new PlayerDataSource();
+  displayedColumns = ['name', 'rating', 'offense', 'offenseRanking', 'defense','defenseRanking'];
+  //dataSource = new PlayerDataSource();
+
 }
 
-class player{
+class player implements Player{
   name: string;
   rating: number;
   offense: number;
+  offenseRanking: number;
   defense: number;
+  defenseRanking: number;
 
-  constructor(name: string, rating: number, offense: number, defense: number){
+  constructor(name: string, rating: number, offense: number, offenseRanking: number, defense: number, defenseRanking: number){
     this.name = name;
     this.rating = rating;
     this.offense = offense;
+    this.offenseRanking = offenseRanking;
     this.defense = defense;
+    this.defenseRanking = defenseRanking;
   }
 }
 
@@ -56,10 +62,17 @@ export interface Player {
   name: string;
   rating: number;
   offense: number;
+  offenseRanking: number;
   defense: number;
+  defenseRanking: number;
+  //dayPrior: number;
+  //weekPrior: number;
 }
 
-let jsonData: Player[] = [];
+const jsonData: Player[] = [];
+//   {name: "Dan", rating: 1900, offense: 1950, defense: 1850, dayPrior: 1910, weekPrior: 1850},
+//   {name: "Alex", rating: 1800, offense: 1850, defense: 1750, dayPrior: 1780, weekPrior: 1850},
+// ];
 
 export class PlayerDataSource extends DataSource<any> {
   connect(): Observable<Player[]>{
