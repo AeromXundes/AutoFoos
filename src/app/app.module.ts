@@ -6,7 +6,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MatButtonModule, MatCardModule, MatFormFieldModule, MatGridListModule,
-         MatIconModule, MatSelectModule, MatTabsModule, MatToolbarModule, MatTableModule } from '@angular/material';
+         MatIconModule, MatSelectModule, MatTabsModule, MatToolbarModule,
+         MatInputModule, MatTableModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
@@ -24,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PlayerSelectionComponent } from './player-selection/player-selection.component';
 import { HallOfFameComponent } from './hall-of-fame/hall-of-fame.component';
 import { DiscardConfirmationComponent } from './discard-confirmation/discard-confirmation.component';
+import { PlayerEditorComponent } from './components/player-editor/player-editor.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +35,13 @@ import { DiscardConfirmationComponent } from './discard-confirmation/discard-con
     ScoreboardTeamCtrlComponent,
     StartGamePageComponent,
     PlayerSelectionComponent,
+<<<<<<< HEAD
+    DiscardConfirmationComponent,
+    PlayerEditorComponent,
+=======
     HallOfFameComponent,
     DiscardConfirmationComponent
+>>>>>>> master
   ],
   imports: [
     BrowserModule,
@@ -49,8 +56,12 @@ import { DiscardConfirmationComponent } from './discard-confirmation/discard-con
     MatFormFieldModule,
     BrowserAnimationsModule,
     MatToolbarModule,
+<<<<<<< HEAD
+    MatInputModule
+=======
     PapaParseModule,
     MatTableModule
+>>>>>>> master
   ],
   providers: [ElectronService],
   bootstrap: [AppComponent]
