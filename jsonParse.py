@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 
 def getArguments(jsonData):
 	goldStart = [jsonData["startingPositions"]["gold"]["offense"], jsonData["startingPositions"]["gold"]["defense"]]
@@ -15,7 +16,7 @@ def getArguments(jsonData):
 	blackOrig = True
 	goldOrig = True
 
-	for event in jsonData["events"]:
+	for event in jsonData["eventsList"]:
 		if event["event"] == "b+":
 			blackScore+= 1
 			if blackOrig:
@@ -84,24 +85,27 @@ def getArguments(jsonData):
 
 
 if __name__ == '__main__':
-	jsonString = json.dumps({"startingPositions":{"gold":{"offense":"Jason", "defense": "Dan"},
-												"black":{"offense":"Alex", "defense": "Reynolds"}},
-							"events":[{"event": "start", "time": 100},
-										{"event": "g+", "time": 101},
-										{"event": "g+", "time": 102},
-										{"event": "b+", "time": 103},
-										{"event": "bs", "time": 104},
-										{"event": "b+", "time": 105},
-										{"event": "g+","time": 106},
-										{"event": "g+", "time": 107},
-										{"event": "g-", "time": 108},
-										{"event": "g+", "time": 109},
-										{"event": "g+", "time": 110},
-										{"event": "g+", "time": 111},
-										{"event": "g+", "time": 112},
-										{"event": "g+", "time": 113},
-										{"event": "end", "time": 114}]
-							})
+	# jsonString = json.dumps({"startingPositions":{"gold":{"offense":"Jason", "defense": "Dan"},
+	# 											"black":{"offense":"Alex", "defense": "Reynolds"}},
+	# 						"events":[{"event": "start", "time": 100},
+	# 									{"event": "g+", "time": 101},
+	# 									{"event": "g+", "time": 102},
+	# 									{"event": "b+", "time": 103},
+	# 									{"event": "bs", "time": 104},
+	# 									{"event": "b+", "time": 105},
+	# 									{"event": "g+","time": 106},
+	# 									{"event": "g+", "time": 107},
+	# 									{"event": "g-", "time": 108},
+	# 									{"event": "g+", "time": 109},
+	# 									{"event": "g+", "time": 110},
+	# 									{"event": "g+", "time": 111},
+	# 									{"event": "g+", "time": 112},
+	# 									{"event": "g+", "time": 113},
+	# 									{"event": "end", "time": 114}]
+	# 						})
+
+	jsonString = sys.argv[1]
+
 	jsonData = json.loads(jsonString)
 
 	#find the arguments for the algorithm
@@ -111,6 +115,7 @@ if __name__ == '__main__':
 	f = open("jsonLog.csv", "a")
 	f.write(jsonString + "\n")
 	f.close()
+
 	os.system("python rasberryElo.py " + " ".join(args))
 
 	#append game log
