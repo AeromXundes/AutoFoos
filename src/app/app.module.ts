@@ -20,6 +20,7 @@ import { ScoreboardTeamCtrlComponent } from './components/scoreboard-team-ctrl/s
 import { StartGamePageComponent } from './start-game-page/start-game-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PlayerSelectionComponent } from './player-selection/player-selection.component';
+import { DiscardConfirmationComponent } from './discard-confirmation/discard-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { PlayerSelectionComponent } from './player-selection/player-selection.co
     ScoreboardTeamCtrlComponent,
     StartGamePageComponent,
     PlayerSelectionComponent,
+    DiscardConfirmationComponent,
   ],
   imports: [
     BrowserModule,
