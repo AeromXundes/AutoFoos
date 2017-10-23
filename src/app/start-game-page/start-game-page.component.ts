@@ -34,11 +34,14 @@ export class StartGamePageComponent implements OnInit {
     return true;
   }
 
-  startGame() {
-    if (this.playerSelectionIsValid())
-    {
+  startGame(): void {
+    if (this.playerSelectionIsValid()) {
       this._gameState.start();
       this.router.navigateByUrl('scoreboard');
     }
+  }
+
+  editPlayer(): void {
+    this.router.navigateByUrl('player-editor');
   }
 }

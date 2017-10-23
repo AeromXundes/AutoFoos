@@ -6,7 +6,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MatButtonModule, MatCardModule, MatFormFieldModule, MatGridListModule,
-         MatIconModule, MatSelectModule, MatTabsModule, MatToolbarModule} from '@angular/material';
+         MatIconModule, MatSelectModule, MatTabsModule, MatToolbarModule,
+         MatInputModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
@@ -21,6 +22,7 @@ import { StartGamePageComponent } from './start-game-page/start-game-page.compon
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PlayerSelectionComponent } from './player-selection/player-selection.component';
 import { DiscardConfirmationComponent } from './discard-confirmation/discard-confirmation.component';
+import { PlayerEditorComponent } from './components/player-editor/player-editor.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { DiscardConfirmationComponent } from './discard-confirmation/discard-con
     StartGamePageComponent,
     PlayerSelectionComponent,
     DiscardConfirmationComponent,
+    PlayerEditorComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,8 @@ import { DiscardConfirmationComponent } from './discard-confirmation/discard-con
     MatTabsModule,
     MatFormFieldModule,
     BrowserAnimationsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatInputModule
   ],
   providers: [ElectronService],
   bootstrap: [AppComponent]
