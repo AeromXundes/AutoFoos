@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { AwsCommService  } from './aws-comm.service'
 
 @Injectable()
 export class GameStateService {
 
 
-  constructor() {};
+  constructor(private _aws: AwsCommService) {};
 
   eventsList = [];
 
@@ -17,7 +18,7 @@ export class GameStateService {
   currentPositions = {gold: {offense: '', defense: ''},  black: {offense: '', defense: ''}};
   startTime;
   score = {gold: 0, black: 0};
-  useAWS = false;
+  useAWS = true;
   start() {
     this.reset();
     this.addEvent('start');
@@ -27,14 +28,15 @@ export class GameStateService {
     this.addEvent('end');
     console.log(this.getEventsList());
     if (this.useAWS) {
-      //todo
+      var that = this;
+      this._aws.sendGame(this.getEventsList(), function(){that._aws.getPage('current_ranking', function(arg) {console.log(arg)});});
+      
     }
     else {
+      //throw 'Does  not work since  the python files have been  moved to a subfolder...';
       var spawn = require('child_process').spawn;
       var jsonString = JSON.stringify(this.getEventsList());
-      console.log('jsonString is:');
-      console.log(jsonString);
-      var py = spawn('python', ['jsonParse.py', jsonString]);
+      var py = spawn('python', ['./jsonParse.py', jsonString], {cwd: './AWS'});
     }
   }
   
