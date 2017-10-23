@@ -22,17 +22,9 @@ appInterface.get('/current_ranking', (req, res) => {
   var msg = ""
   const inputFile = 'currentStandings.csv'
 
-  fs.createReadStream(inputFile)
-    .pipe(es.split())
-    .pipe(es.mapSync(function(line) {
-      msg += line;
-      msg += '\r\n';
-    })) // mapSync
-    .on('close', () => {
-      console.log('Sending the most recent ranking')
-      console.log(msg)
-      res.send(msg);
-    }) // on('close')
+  var text = fs.readFileSync(inputFile);
+  console.log(text);
+  res.send(text);
 });
 
 // Handle /update_data
@@ -46,18 +38,9 @@ appInterface.post('/update_data', (req, res) => {
 
   var py = spawn('python', ['jsonParse.py', JSON.stringify(updates)]);
   py.on('exit', () => {
-    fs.createReadStream(inputFile)
-      .pipe(es.split())
-      .pipe(es.mapSync(function(line) {
-        msg += line;
-        msg += '\r\n';
-      })) // mapSync
-      .on('end', () => {
-         // TODO: this is temporary to generate index.html
-         console.log('Sending updated ranking')
-         console.log(msg)
-         res.send(msg)
-      }) // on('end')
+    var text = fs.readFileSync(inputFile);
+    console.log(text);
+    res.send(text);
   })
 })
 
