@@ -19,6 +19,7 @@ export class GameStateService {
   score = {gold: 0, black: 0};
 
   start() {
+    this.reset();
     this.addEvent('start');
     this.startTime = Date.now();
   }
