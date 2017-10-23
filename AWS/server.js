@@ -44,13 +44,7 @@ webInterface.post('/update_data', (req, res) => {
   console.log('Receiving new match record:')
   console.log(req.body);
 
-  var winnerOffense = updates['OffenseWinner'];
-  var winnerDefense = updates['DefenseWinner'];
-  var loserOffense = updates['OffenseLoser'];
-  var loserDefense = updates['DefenseLoser'];
-  var loserScore = updates['Margin'];
-  var py = spawn('python', ['RasberryElo.py', winnerOffense, 
-    winnerDefense, loserOffense, loserDefense, loserScore]);
+  var py = spawn('python', ['RasberryElo.py', JSON.stringify(updates)]);
   py.on('exit', () => {
     fs.createReadStream(inputFile)
       .pipe(es.split())
@@ -60,7 +54,6 @@ webInterface.post('/update_data', (req, res) => {
       })) // mapSync
       .on('end', () => {
          // TODO: this is temporary to generate index.html
-         fse.copySync('currentStandings.csv', 'index.html')
          console.log('Sending updated ranking')
          res.send(msg)
       }) // on('end')

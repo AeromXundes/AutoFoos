@@ -99,7 +99,7 @@ if __name__ == '__main__':
 	f.close()
 
 	#updates the rankings and currentStanings.csv
-	os.system("python rasberryElo.py " + " ".join(args))
+	os.system("python RasberryElo.py " + " ".join(args))
 
 	#append game log (just winners and losers)
 	f = open("gameLog.csv", "a")
