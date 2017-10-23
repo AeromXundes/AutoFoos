@@ -105,6 +105,10 @@ if __name__ == '__main__':
 	# 									{"event": "end", "time": 114}]
 	# 						})
 
+	d = open("hello",  "w")	
+	d.write("in python")
+	d.close()
+
 	jsonString = sys.argv[1]
 
 	jsonData = json.loads(jsonString)
@@ -112,14 +116,18 @@ if __name__ == '__main__':
 	#find the arguments for the algorithm
 	args = getArguments(jsonData)
 
+
 	#log the Jsons for later use if needed
 	f = open("jsonLog.csv", "a")
 	f.write(jsonString + "\n")
 	f.close()
 
-
+	d = open("hello",  "a")	
+	d.write("before calling elo\n")
+	d.write(" ".join(args) + "\n")
+	d.close()
 	#updates the rankings and currentStanings.csv
-	os.system("python RasberryElo.py " + " ".join(args))
+	os.system("python ./RasberryElo.py " + " ".join(args))
 
 	#append game log (just winners and losers)
 	f = open("gameLog.csv", "a")

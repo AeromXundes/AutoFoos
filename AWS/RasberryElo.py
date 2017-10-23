@@ -366,6 +366,11 @@ def printNonTopTen(currS):
                + str(currS[j][5]) + " | " + str(round(currS[j][2],1)) + "\t" + str(currS[j][6]) + " | " + str(round(currS[j][3],1))  + "\t" +str(currS[j][8]) + "\t" +  str(currS[j][12]))
         j = j + 1
 if __name__ == '__main__':
+
+    d = open("hello2",  "w")
+    d.write("in elo")
+    d.close()
+
     update(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
     
 
