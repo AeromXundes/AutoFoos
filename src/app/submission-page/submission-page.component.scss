@@ -1,15 +1,34 @@
 
-  
+  .centered-column {
+    margin: auto;
+    width: 400px;
+  }
+
+  .top-spacer {
+    min-height: 120px;
+  }
+
+  .small-buttons {
+    display: inline;
+  }
+
+  .horz-spacer {
+    float: right;
+  }
+
   #submit {
-      width: 75%;
-      height: 40%;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 120px;
   }
   #discard {
-      width: 25%;
-      height: 20%;
+    width: 48%;
+    height: 120px;    
   }
   #back {
-    width: 25%;
-    height: 20%;
+    width: 48%;
+    height: 120px;    
   }
+
+
 
