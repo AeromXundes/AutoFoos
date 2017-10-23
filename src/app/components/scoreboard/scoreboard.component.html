@@ -9,15 +9,21 @@
 </div> -->
 
 <div class="score-panel">
+    
     <div class="content-cell score-cell gold-cell">
         <app-scoreboard-team-ctrl [(score)]="goldScore" teamName="Gold"></app-scoreboard-team-ctrl>
     </div>
+
     <div class="content-cell button-panel">
+        <div class="time"><p>{{time.value}}</p></div>
         <button mat-raised-button color="primary" id="end" (click)="end()">End</button>
     </div>
+   
+
     <div class="content-cell score-cell black-cell">
         <app-scoreboard-team-ctrl [(score)]="blackScore" teamName="Black"></app-scoreboard-team-ctrl>        
     </div>
 </div>
+
 
 
