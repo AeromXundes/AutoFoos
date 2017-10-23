@@ -3,7 +3,7 @@ import os
 import csv
 import string
 
-with open("currentStandings.csv", 'rb') as csvfile:
+with open("currentStandings.csv", 'r') as csvfile:
     table_string = ""
     reader       = csv.reader( csvfile )
     

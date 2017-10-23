@@ -1,23 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
-
-html, body {
-  margin: 0;
-  padding: 0;
-
-  height: 100%;
-}
-
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  src: url(assets/iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: url(MaterialIcons-Regular.eot); /* For IE6-8 */
   src: local('Material Icons'),
-    local('MaterialIcons-Regular'),
-    url(assets/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
-    url(assets/iconfont/MaterialIcons-Regular.woff) format('woff'),
-    url(assets/iconfont/MaterialIcons-Regular.ttf) format('truetype');
+       local('MaterialIcons-Regular'),
+       url(MaterialIcons-Regular.woff2) format('woff2'),
+       url(MaterialIcons-Regular.woff) format('woff'),
+       url(MaterialIcons-Regular.ttf) format('truetype');
 }
 
 .material-icons {
