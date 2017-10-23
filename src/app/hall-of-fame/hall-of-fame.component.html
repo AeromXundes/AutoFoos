@@ -9,6 +9,14 @@
 <!--- Note that these columns can be defined in any order.
     The actual rendered columns are set as a property on the row definition" -->
 
+<!-- Rank Column -->
+<ng-container matColumnDef="rank">
+<mat-header-cell *matHeaderCellDef> Rank </mat-header-cell>
+<mat-cell *matCellDef="let element"> 
+<span [ngClass]="{'red': !element.rankFlag, 'green': element.rankFlag}">{{element.rank}}</span> 
+</mat-cell>
+</ng-container>
+
 <!-- Name Column -->
 <ng-container matColumnDef="name">
 <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
@@ -19,32 +27,32 @@
 <ng-container matColumnDef="rating">
 <mat-header-cell *matHeaderCellDef> Rating </mat-header-cell>
 <mat-cell *matCellDef="let element"> 
-<span ng-class='{red: element.rating <= element.dayPrior, green: element.rating >= element.dayPrior}'>{{element.rating}}</span> 
+<span [ngClass]="{'red': !element.ratingFlag, 'green': element.ratingFlag}">{{element.rating}}</span>
 </mat-cell>
 </ng-container>
 
 <!-- Offense Rating Column -->
-<ng-container matColumnDef="offense">
-<mat-header-cell *matHeaderCellDef> Offense Rating </mat-header-cell>
-<mat-cell *matCellDef="let element"> {{element.offense}} </mat-cell>
-</ng-container>
-
-<!-- Offense Ranking Column -->
 <ng-container matColumnDef="offenseRanking">
 <mat-header-cell *matHeaderCellDef> Offense Ranking </mat-header-cell>
 <mat-cell *matCellDef="let element"> {{element.offenseRanking}} </mat-cell>
 </ng-container>
 
-<!-- Defense Rating Column -->
-<ng-container matColumnDef="defense">
-<mat-header-cell *matHeaderCellDef> Defense Rating </mat-header-cell>
-<mat-cell *matCellDef="let element"> {{element.defense}} </mat-cell>
+<!-- Offense Ranking Column -->
+<ng-container matColumnDef="offense">
+<mat-header-cell *matHeaderCellDef> Offense Rating </mat-header-cell>
+<mat-cell *matCellDef="let element"> {{element.offense}} </mat-cell>
 </ng-container>
 
-<!-- Defense Ranking Column -->
+<!-- Defense Rating Column -->
 <ng-container matColumnDef="defenseRanking">
 <mat-header-cell *matHeaderCellDef> Defense Ranking </mat-header-cell>
 <mat-cell *matCellDef="let element"> {{element.defenseRanking}} </mat-cell>
+</ng-container>
+
+<!-- Defense Ranking Column -->
+<ng-container matColumnDef="defense">
+<mat-header-cell *matHeaderCellDef> Defense Rating </mat-header-cell>
+<mat-cell *matCellDef="let element"> {{element.defense}} </mat-cell>
 </ng-container>
 
 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
 import { PapaParseService } from 'ngx-papaparse';
 import { MatTableModule } from '@angular/material';
 import { DataSource } from '@angular/cdk/collections';
@@ -14,43 +15,78 @@ import 'rxjs/add/observable/of'
 export class HallOfFameComponent implements OnInit {
 
   private dataSource: PlayerDataSource;
-  constructor(private papa: PapaParseService) {
+  private ratingFlag: boolean;
+  private rankFlag: boolean;
+  constructor(private papa: PapaParseService, private http: Http) {
   }
 
   ngOnInit() {
   }
 
-  
+  v = this.showTopPlayers();
+
   showTopPlayers() {
-    this.papa.parse("https://raw.githubusercontent.com/AeromXundes/AutoFoos/master/currentStandings.csv", {
-      download: true,
-      complete: function(results) {
-        for(var k = 1; k <= 10; ++k){
-          var temp = results.data[k][0].split(",");
-          jsonData.push(new player(temp[0], temp[1], temp[2], temp[5], temp[3], temp[6]));
-        }
+    this.http.get("http://10.240.132.121/current_ranking").subscribe(
+      data => {
+        jsonData = [];
+        let csvString = data["_body"].toString();
+        this.papa.parse(csvString, {
+          complete: function(results) {
+            for(let k = 0; k < 10; ++k){
+              let currPlayerData = results.data[k];
+              this.ratingFlag = false;
+              this.rankFlag = true;
+              let prevRatingPlayer = currPlayerData[7].split("|");
+              let diff = Math.abs(Math.round(currPlayerData[1]) - Math.round(prevRatingPlayer[1]));
+              if(Math.round(prevRatingPlayer[1]) < Math.round(currPlayerData[1])){
+                this.ratingFlag = true;
+              }
+              if(Number(currPlayerData[4]) > Number(prevRatingPlayer[0])){
+                this.rankFlag = false;
+              }
+              jsonData.push(new player(
+                currPlayerData[4],
+                this.rankFlag,
+                currPlayerData[0], 
+                Math.round(currPlayerData[1]).toString()+" {"+diff.toString()+"}", 
+                this.ratingFlag, 
+                currPlayerData[5], 
+                Math.round(currPlayerData[2]), 
+                currPlayerData[6], 
+                Math.round(currPlayerData[3])));
+            }
+          }
+      });
+      },
+      error => {
+        jsonData.push(new player(NaN, false, "", "", false, NaN, NaN, NaN, NaN));
       }
-    });
-    this.dataSource = new PlayerDataSource();    
-    console.log(jsonData);
+
+    );
+    this.dataSource = new PlayerDataSource(); 
   }
 
-  displayedColumns = ['name', 'rating', 'offense', 'offenseRanking', 'defense','defenseRanking'];
-  //dataSource = new PlayerDataSource();
+  displayedColumns = ['rank', 'name', 'rating', 'offenseRanking', 'offense','defenseRanking', 'defense'];
 
 }
 
 class player implements Player{
+  rank: number;
+  rankFlag: boolean;
   name: string;
-  rating: number;
-  offense: number;
+  rating: string;
+  ratingFlag: boolean;
   offenseRanking: number;
-  defense: number;
+  offense: number;
   defenseRanking: number;
+  defense: number;
 
-  constructor(name: string, rating: number, offense: number, offenseRanking: number, defense: number, defenseRanking: number){
+  constructor(rank: number, rankFlag: boolean, name: string, rating: string, ratingFlag: boolean, offenseRanking: number, offense: number, defenseRanking: number, defense: number){
+    this.rank = rank;
+    this.rankFlag = rankFlag;
     this.name = name;
     this.rating = rating;
+    this.ratingFlag = ratingFlag;
     this.offense = offense;
     this.offenseRanking = offenseRanking;
     this.defense = defense;
@@ -59,20 +95,18 @@ class player implements Player{
 }
 
 export interface Player {
+  rank: number;
+  rankFlag: boolean;
   name: string;
-  rating: number;
-  offense: number;
+  rating: string;
+  ratingFlag: boolean;
   offenseRanking: number;
-  defense: number;
+  offense: number;
   defenseRanking: number;
-  //dayPrior: number;
-  //weekPrior: number;
+  defense: number;
 }
 
-const jsonData: Player[] = [];
-//   {name: "Dan", rating: 1900, offense: 1950, defense: 1850, dayPrior: 1910, weekPrior: 1850},
-//   {name: "Alex", rating: 1800, offense: 1850, defense: 1750, dayPrior: 1780, weekPrior: 1850},
-// ];
+let jsonData: Player[] = [];
 
 export class PlayerDataSource extends DataSource<any> {
   connect(): Observable<Player[]>{
