@@ -1,0 +1,28 @@
+  .centered-column {
+    margin: auto;
+    width: 400px;
+    display: block;
+  }
+
+  h1 {
+      margin-bottom: 12px;
+  }
+
+  mat-form-field {
+      font-size: 32px;
+      width: 100%;
+  }
+
+  .button-panel {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  button {
+    width: 150px;
+    height: 75px;
+  }
+
+  .top-spacer {
+    min-height: 100px;
+  }

@@ -86,6 +86,7 @@ def getArguments(jsonData):
 
 if __name__ == '__main__':
 
+
     # jsonString = json.dumps({"startingPositions":{"gold":{"offense":"Jason", "defense": "Dan"},
     #                                             "black":{"offense":"Alex", "defense": "Reynolds"}},
     #                         "events":[{"event": "start", "time": 100},
@@ -129,3 +130,4 @@ if __name__ == '__main__':
     #converts currentStandings.csv to a index.html
     os.system("python standingsToHtml.py")
     exit(0)
+
