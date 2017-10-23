@@ -108,4 +108,5 @@ if __name__ == '__main__':
 
 	#converts currentStandings.csv to a index.html
 	os.system("python standingsToHtml.py")
+    exit(0)
 
