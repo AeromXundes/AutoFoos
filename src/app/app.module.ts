@@ -35,13 +35,9 @@ import { PlayerEditorComponent } from './components/player-editor/player-editor.
     ScoreboardTeamCtrlComponent,
     StartGamePageComponent,
     PlayerSelectionComponent,
-<<<<<<< HEAD
-    DiscardConfirmationComponent,
     PlayerEditorComponent,
-=======
     HallOfFameComponent,
     DiscardConfirmationComponent
->>>>>>> master
   ],
   imports: [
     BrowserModule,
@@ -56,12 +52,9 @@ import { PlayerEditorComponent } from './components/player-editor/player-editor.
     MatFormFieldModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-<<<<<<< HEAD
-    MatInputModule
-=======
+    MatInputModule,
     PapaParseModule,
     MatTableModule
->>>>>>> master
   ],
   providers: [ElectronService],
   bootstrap: [AppComponent]
