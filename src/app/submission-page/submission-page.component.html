@@ -1,3 +1,10 @@
-<button mat-raised-button color="primary" id="submit" (click)="submit()">Submit</button>
-<button mat-raised-button color="warn" id="discard" (click)="discard()">Discard game</button>
-<button mat-raised-button color="warn" id="back" (click)="cancel()">Back to game</button>
+
+<div class="centered-column">
+    <div class="top-spacer"></div>
+    <button mat-raised-button color="primary" id="submit" (click)="submit()">Submit</button>
+    <div>
+        <button class="small-buttons" mat-raised-button color="warn" id="discard" (click)="discard()">Discard game</button>
+        <div class="small-buttons "></div>
+        <button class="small-buttons horz-spacer" mat-raised-button color="warn" id="back" (click)="cancel()">Back to game</button>
+    </div>
+</div>
