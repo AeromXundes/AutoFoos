@@ -1,5 +1,6 @@
 .DS_Store
 dist
 node_modules
+app-builds
 package-lock.json
 *.swp
