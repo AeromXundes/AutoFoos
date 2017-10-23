@@ -61,20 +61,14 @@ appInterface.post('/update_data', (req, res) => {
   })
 })
 
-webInterface.get('/', (req, res) => {
+appInterface.get('/', (req, res) => {
  // res.redirect('https://jpkolbush.github.io/index.html');
  // TODO: we are sending html as a file
  res.sendFile(path.join(__dirname, '/index.html'));
 })
 
 // Launch the server on port 3000
-const server = appInterface.listen(1000, () => {
+const server = appInterface.listen(80, () => {
   const { address, port } = server.address();
-  console.log(`Listening at port 1000`);
-});
-
-// Launch the server on port 3000
-const server2 = webInterface.listen(80, () => {
-  const { address, port } = server2.address();
   console.log(`Listening at 80`);
 });
