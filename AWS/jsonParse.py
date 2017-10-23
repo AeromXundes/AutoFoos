@@ -85,6 +85,7 @@ def getArguments(jsonData):
 
 
 if __name__ == '__main__':
+
 	# jsonString = json.dumps({"startingPositions":{"gold":{"offense":"Jason", "defense": "Dan"},
 	# 											"black":{"offense":"Alex", "defense": "Reynolds"}},
 	# 						"events":[{"event": "start", "time": 100},
@@ -116,12 +117,15 @@ if __name__ == '__main__':
 	f.write(jsonString + "\n")
 	f.close()
 
-	os.system("python rasberryElo.py " + " ".join(args))
 
-	#append game log
+	#updates the rankings and currentStanings.csv
+	os.system("python RasberryElo.py " + " ".join(args))
+
+	#append game log (just winners and losers)
 	f = open("gameLog.csv", "a")
 	f.write(",".join(args) + "\n")
 	f.close()
 
+	#converts currentStandings.csv to a index.html
 	os.system("python standingsToHtml.py")
-
+	exit(0)
