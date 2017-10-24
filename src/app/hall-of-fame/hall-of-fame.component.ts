@@ -23,7 +23,10 @@ export class HallOfFameComponent implements OnInit {
   ngOnInit() {
   }
 
-  v = this.showTopPlayers();
+  ngAfterViewChecked() {
+    this.showTopPlayers();
+  }
+
 
   showTopPlayers() {
     this.http.get("http://10.240.132.121/current_ranking").subscribe(
@@ -37,8 +40,8 @@ export class HallOfFameComponent implements OnInit {
               this.ratingFlag = false;
               this.rankFlag = true;
               let prevRatingPlayer = currPlayerData[7].split("|");
-              let diff = Math.abs(Math.round(currPlayerData[1]) - Math.round(prevRatingPlayer[1]));
-              if(Math.round(prevRatingPlayer[1]) < Math.round(currPlayerData[1])){
+              let diff = Math.round(currPlayerData[1]) - Math.round(prevRatingPlayer[1]);
+              if(diff > 0 || diff !== diff){
                 this.ratingFlag = true;
               }
               if(Number(currPlayerData[4]) > Number(prevRatingPlayer[0])){
