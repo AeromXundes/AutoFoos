@@ -1,4 +1,8 @@
-
+<mat-card-title class="wrapper">
+    <button mat-raised-button color="primary" (click)="showTopPlayers()">
+        <h4>Hit Me!</h4>
+    </button>
+</mat-card-title>
 <div class="example-container mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource">
 
@@ -9,7 +13,7 @@
         <ng-container matColumnDef="rank">
             <mat-header-cell *matHeaderCellDef> Rank </mat-header-cell>
             <mat-cell *matCellDef="let element"> 
-                
+                <span [ngClass]="{'red': !element.rankFlag, 'green': element.rankFlag}">{{element.rank}}</span> 
             </mat-cell>
         </ng-container>
 
