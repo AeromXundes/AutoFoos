@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const http = require('http');
 const bodyParser = require('body-parser');
 
 // Initialize http server
@@ -15,7 +16,7 @@ var fs = require('fs');
 var fse = require('fs-extra');
 
 appInterface.use(bodyParser.json());
-webInterface.use(bodyParser.json());
+//appInterface.use(express.static(path.join(__dirname, 'foos-front/dist')));
 
 // Handle /current_ranking
 appInterface.get('/current_ranking', (req, res) => {
@@ -46,12 +47,29 @@ appInterface.post('/update_data', (req, res) => {
 
 appInterface.get('/', (req, res) => {
  // res.redirect('https://jpkolbush.github.io/index.html');
- // TODO: we are sending html as a file
  res.sendFile(path.join(__dirname, '/index.html'));
+// res.sendFile(path.join(__dirname, 'foos-front/dist/index.html'));
 })
+
+appInterface.get('*', (req, res) => {
+ // res.redirect('https://jpkolbush.github.io/index.html');
+ res.sendFile(path.join(__dirname, req.url));
+// res.sendFile(path.join(__dirname, 'foos-front/dist/index.html'));
+})
+
+
 
 // Launch the server on port 3000
 const server = appInterface.listen(80, () => {
   const { address, port } = server.address();
   console.log(`Listening at 80`);
 });
+
+/*
+appInterface.set('port', 80);
+
+const server = http.createServer(appInterface);
+
+//server.listen(port, () => { console.log('server running on port: ' + port}));
+server.listen(80, () => {});
+*/
