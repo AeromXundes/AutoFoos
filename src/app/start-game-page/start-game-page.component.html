@@ -1,8 +1,10 @@
+
+<!-- PAGE MENU -->
 <mat-toolbar color="primary">
   <span>AutoFoos<i class="fa fa-futbol-o fa-lg"></i></span>
     
   <!-- This fills the remaining space of the current row -->
-  <span class="example-fill-remaining-space"></span>
+  <span class="fill-remaining-space"></span>
     
   <span>
     <button class="menu-button" mat-button (click)="editPlayer()">
@@ -14,25 +16,35 @@
   </span>
 </mat-toolbar>
 
-<mat-tab-group>
-  <mat-tab label="Player Selection">
-    <mat-grid-list cols="2" rowHeight="2:1">
-    <mat-grid-tile>
-    <app-player-selection position="gold offense"></app-player-selection>
-    </mat-grid-tile>
-    <mat-grid-tile>
-    <app-player-selection position="gold defense"></app-player-selection>
-    </mat-grid-tile>
-    <mat-grid-tile>
-    <app-player-selection position="black offense"></app-player-selection>
-    </mat-grid-tile>
-    <mat-grid-tile>
-    <app-player-selection position="black defense"></app-player-selection>
-    </mat-grid-tile>
-    </mat-grid-list>
-  </mat-tab>
 
-  <mat-tab label="Hall of Fame">
-    <app-hall-of-fame></app-hall-of-fame>
-  </mat-tab>
-</mat-tab-group>
+<!-- TAB GROUPS -->
+<div class="content-area">
+  <mat-tab-group class="tab-group" dynamicHeight="true">
+      
+    <mat-tab label="Player Selection">
+
+      <mat-grid-list class="background-image" [style.backgroundImage]="'url('+ backgroundUrl +')'" cols="2">
+        <mat-grid-tile class="black-panel">
+          <div class="column column-left">
+            <div class="label black-label mat-display-3">BLACK</div>
+            <div><app-player-selection position="black defense"></app-player-selection></div>                
+            <div><app-player-selection position="black offense"></app-player-selection></div> 
+          </div>
+        </mat-grid-tile>
+
+        <mat-grid-tile class="gold-panel">
+          <div class="column-right">
+            <div class="label gold-label mat-display-3">GOLD</div>
+            <div><app-player-selection position="gold offense"></app-player-selection></div>                
+            <div><app-player-selection position="gold defense"></app-player-selection></div> 
+          </div>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+    </mat-tab>
+    
+    <mat-tab label="Hall of Fame">
+      <app-hall-of-fame></app-hall-of-fame>
+    </mat-tab>
+  </mat-tab-group>
+</div>

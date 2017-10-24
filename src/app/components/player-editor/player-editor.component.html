@@ -1,20 +1,31 @@
 
+<!-- PAGE MENU -->
+<mat-toolbar color="primary">
+    <span>AutoFoos<i class="fa fa-futbol-o fa-lg"></i></span>
+        
+    <!-- This fills the remaining space of the current row -->
+    <span class="fill-remaining-space"></span>
+        
+    <span>
+        <button class="menu-button" mat-button (click)="back()">
+            <span class="mat-h2">Back<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i></span>
+        </button>
+    </span>
+</mat-toolbar>
+
+<!-- CONTENT -->
 <div class="centered-column">
     <div class="top-spacer"></div>
     <h1 class="mat-display-2">Add A Player</h1>
 
     <form (ngSubmit)="onSubmit()" #playerForm="ngForm">
-        
-      <mat-form-field>
-          <input matInput [(ngModel)]="playerName" placeholder="Player Name" name="player" required>        
-      </mat-form-field>
-      <div class="button-panel">
-          <button mat-raised-button type="submit" color="primary" [disabled]="!playerForm.form.valid">
-            <span class="mat-display-1">Submit</span>
-          </button>   
-          <button mat-raised-button type="button" color="warn" id="cancel" (click)="back()">
-              <span class="mat-display-1">Cancel</span>
-          </button>         
-      </div>
+        <mat-form-field>
+            <input matInput [(ngModel)]="playerName" placeholder="Player Name" name="player" required>        
+        </mat-form-field>
+        <div class="button-panel">
+            <button mat-raised-button type="submit" color="primary" [disabled]="!playerForm.form.valid">
+                <span class="mat-display-1">Submit</span>
+            </button>         
+        </div>
     </form>
 </div>
