@@ -9,8 +9,3 @@ if (environment.production) {
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule);
-
-var Gpio = require('onoff').Gpio;
-var ledYel = new Gpio(12, 'out');
-
-ledYel.writeSync(Gpio.HIGH);

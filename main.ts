@@ -82,3 +82,8 @@ var loserOffense = 'Ghi';
 var loserDefense = 'Jkl';
 var loserScore = '4';
 var py = spawn('python', ['RasberryElo.py', winnerOffense,  winnerDefense, loserOffense, loserDefense, loserScore]);
+
+var Gpio = require('onoff').Gpio;
+var ledYel = new Gpio(12, 'out');
+
+ledYel.writeSync(Gpio.HIGH);
