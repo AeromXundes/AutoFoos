@@ -9,10 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./start-game-page.component.scss']
 })
 export class StartGamePageComponent implements OnInit {
+  private backgroundUrl: ImageData;
+
   constructor(private _gameState: GameStateService, private router: Router) { }
 
 
   ngOnInit() {
+    this.backgroundUrl = require('../../assets/Foosball_Table.png');
   }
 
   playerSelectionIsValid() {
