@@ -24,7 +24,7 @@ export class HallOfFameComponent implements OnInit {
   }
 
   ngAfterViewChecked() {
-    this.showTopPlayers();
+    // this.showTopPlayers();
   }
 
 
