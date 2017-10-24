@@ -2,14 +2,32 @@ import sys
 import os
 import csv
 import string
+import datetime
+from pytz import timezone
+
+def genHtml(row, date):
+    playerName = row[0]
+    f = open("./players/"+playerName+".html", "w")
+    f.write('<style type="text/css">td{padding:0 15px 0 15px;}</style>')
+    f.write('<h2> ' + playerName + ' (as of ' + str(date) + ')' )
+    f.write("<table>")
+    f.write('<tr style="font-weight:bold"><td>Rank</td><td>Name</td><td>Overall\t\t</td><td>Offense  </td><td>Defense  </td><td>1 Day Prior   </td><td>1 Week Prior  </td></tr>\n')
+    table_string = "<tr><td>" + row[4] + "</td><td>" + playerName + "</td><td>" + str(round(float(row[1]), 1)) + "</td><td>" + \
+            row[5] + " | " + str(round(float(row[2]), 1)) + '</td><td>' + row[6] + " | " + str(round(float(row[3]), 1)) + '</td><td bgcolor="' + yesColor + '">' +\
+            row[8] + '</td><td bgcolor="' + weekColor + '">' + row[12] + "</td></tr>\n"
+
+    f.write(table_string)
+    f.write("</table>")
+    f.close()
 
 with open("currentStandings.csv", 'r') as csvfile:
+    date = datetime.datetime.now(timezone('US/Eastern'))
     table_string = ""
     reader       = csv.reader( csvfile )
     
     f = open("index.html", "w")
     f.write('<style type="text/css">td{padding:0 15px 0 15px;}</style>')
-    f.write('<h2> ASDC Foosball Top 12')
+    f.write('<h2> ASDC Foosball Top 12 (as of ' + str(date) + ')' )
     f.write("<table>")
     f.write('<tr style="font-weight:bold"><td>Rank</td><td>Name</td><td>Overall\t\t</td><td>Offense  </td><td>Defense  </td><td>1 Day Prior   </td><td>1 Week Prior  </td></tr>\n')
     for row in reader:
@@ -32,9 +50,11 @@ with open("currentStandings.csv", 'r') as csvfile:
                 weekColor = "LightGreen"
             if int(row[4]) > weekRank:
                 weekColor = "Pink"
-            table_string+= "<tr><td>" + row[4] + "</td><td>" + row[0] + "</td><td>" + str(round(float(row[1]), 1)) + "</td><td>" + \
+            playerName = row[0]
+            table_string+= "<tr><td>" + row[4] + "</td><td><a href=./players/"+ playerName + ".html>" + playerName + "</a></td><td>" + str(round(float(row[1]), 1)) + "</td><td>" + \
                     row[5] + " | " + str(round(float(row[2]), 1)) + '</td><td>' + row[6] + " | " + str(round(float(row[3]), 1)) + '</td><td bgcolor="' + yesColor + '">' +\
                     row[8] + '</td><td bgcolor="' + weekColor + '">' + row[12] + "</td></tr>\n"
+            genHtml(row, date)
 
     
     f.write(table_string)
