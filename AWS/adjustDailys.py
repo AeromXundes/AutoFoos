@@ -22,6 +22,31 @@ def adjustDailys(currS):
 
     return currS
 
+def printTopTen(currS):
+    print("Rank\tName\tOverall\t\tOffense\t\tDefense\t\t1 Day Prior\t1 Week Prior")
+    #I is number of players printed
+    i = 0
+    #j is index
+    j = 0
+    while i < 12 and j < len(currS):
+        if currS[j][0] != "Peter":
+            print(str(i + 1) + "\t" + str(currS[j][0]) + "\t" + str(round(currS[j][1], 1)) + "\t\t"
+               + str(currS[j][5]) + " | " + str(round(currS[j][2],1)) + "\t" + str(currS[j][6]) + " | " + str(round(currS[j][3],1))  + "\t" +str(currS[j][8]) + "\t" +  str(currS[j][12]))
+            i = i + 1
+        j = j + 1
+
+def printNonTopTen(currS):
+    j = 12
+    while j < len(currS):
+        if currS[j][5] < 6:
+            print(str(j + 1) + "\t" + str(currS[j][0]) + "\t" + str(round(currS[j][1], 1)) + "\t\t"
+               + str(currS[j][5]) + " | " + str(round(currS[j][2],1)) + "\t" + str(currS[j][6]) + " | " + str(round(currS[j][3],1))  + "\t" +str(currS[j][8]) + "\t" +  str(currS[j][12]))
+        if currS[j][6] < 6:
+            print(str(j + 1) + "\t" + str(currS[j][0]) + "\t" + str(round(currS[j][1], 1)) + "\t\t"
+               + str(currS[j][5]) + " | " + str(round(currS[j][2],1)) + "\t" + str(currS[j][6]) + " | " + str(round(currS[j][3],1))  + "\t" +str(currS[j][8]) + "\t" +  str(currS[j][12]))
+        j = j + 1
+
+
 g = open("currentStandings.csv", "r")
 currS = g.readlines()
 i = 0
@@ -50,7 +75,12 @@ while i < len(currS):
 
         i = i + 1
 g.close()
+
 currS = adjustDailys(currS)
+
+printTopTen(currS)
+
+printNonTopTen(currS)
 
 g = open("currentStandings.csv", "w")
 for player in currS:
