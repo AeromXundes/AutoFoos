@@ -1,4 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import { Http } from '@angular/http';
 import { PlayersListService  } from '../players-list.service'
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
@@ -9,29 +10,49 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class PlayerProfileComponent implements OnInit {
 
-  constructor(private _playersList: PlayersListService, public dialog: MatDialog) { }
+  constructor(private _playersList: PlayersListService, public dialog: MatDialog, private http: Http) { }
 
   ngOnInit() {
   }
 
   selection(name){
     console.log(name);
-    this.openDialog(name);
+    this.http.get("http://10.240.132.121:80/players/"+name+".json").subscribe(
+      data => {
+        //console.log(data["_body"]);
+        let jsonData = JSON.parse(data["_body"]);
+        this.openDialog(name, jsonData);
+      },
+      error=> {}
+  );
+    
   }
 
   image: string;
   name: string;
+  gamesPlayed: number;
+  winPerCent : number;
+  winStreak: number;
+  rank: number;
+  offenseRank: number;
+  defenseRank: number;
+  rating: number;
 
-  openDialog(_name): void {
+
+  openDialog(_name, jsonData): void {
     let dialogRef = this.dialog.open(PlayerProfileDialog, {
       width: '400px',
-      data: { name: _name, image: "images/"+_name+".png" }
+      data: { name: jsonData["Name"], 
+              image: "../src/assets/images/"+_name+".png", 
+              gamesPlayed: jsonData["gamesPlayed"],
+              winPerCent: jsonData["Winning Percentage"].toFixed(2)*100,
+              winStreak: jsonData["longestWinningStreak"],
+              rank: jsonData["overallRank"],
+              offenseRank: jsonData["offenseRank"],
+              defenseRank: jsonData["defenseRank"],
+              rating: Math.round(jsonData["overallPoints"])
+            }
     });
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
-    //   //this.image = result; 
-    // });
   }
 
   getPlayersList() {
@@ -54,6 +75,7 @@ export class PlayerProfileComponent implements OnInit {
 @Component({
   selector: 'player-profile-dialog',
   templateUrl: 'player-profile-dialog.html',
+  styleUrls: ['./player-profile.component.scss']
 })
 export class PlayerProfileDialog {
 
