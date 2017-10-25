@@ -5,6 +5,7 @@ import { MatTableModule } from '@angular/material';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import { Router } from '@angular/router';
 
 let jsonData: Player[] = [];
 
@@ -67,7 +68,7 @@ export class HallOfFameComponent implements OnInit {
   private dataSource: PlayerDataSource;
   private ratingFlag: boolean;
   private rankFlag: boolean;
-  constructor(private papa: PapaParseService, private http: Http) {
+  constructor(private papa: PapaParseService, private http: Http, private router: Router) {
   }
 
   ngOnInit() {
@@ -120,6 +121,10 @@ export class HallOfFameComponent implements OnInit {
     return showTopPlayers;
   }
   displayedColumns = ['rank', 'name', 'rating', 'offenseRanking', 'offense','defenseRanking', 'defense'];
+
+  back() {
+    this.router.navigateByUrl('');
+  }
 
   grbg = this.getShowTopPlayers()();
 }
