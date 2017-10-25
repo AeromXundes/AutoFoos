@@ -1,13 +1,14 @@
 import 'zone.js/dist/zone-mix';
 import 'reflect-metadata';
 import 'polyfills';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MatButtonModule, MatCardModule, MatFormFieldModule, MatGridListModule,
          MatIconModule, MatSelectModule, MatTabsModule, MatToolbarModule,
-         MatInputModule, MatTableModule } from '@angular/material';
+         MatInputModule, MatTableModule, MatDialogModule  } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
@@ -26,6 +27,7 @@ import { PlayerSelectionComponent } from './player-selection/player-selection.co
 import { HallOfFameComponent } from './hall-of-fame/hall-of-fame.component';
 import { DiscardConfirmationComponent } from './discard-confirmation/discard-confirmation.component';
 import { PlayerEditorComponent } from './components/player-editor/player-editor.component';
+import { PlayerProfileComponent, PlayerProfileDialog } from './player-profile/player-profile.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { PlayerEditorComponent } from './components/player-editor/player-editor.
     PlayerSelectionComponent,
     PlayerEditorComponent,
     HallOfFameComponent,
-    DiscardConfirmationComponent
+    DiscardConfirmationComponent,
+    PlayerProfileComponent,
+    PlayerProfileDialog
   ],
   imports: [
     BrowserModule,
@@ -54,9 +58,13 @@ import { PlayerEditorComponent } from './components/player-editor/player-editor.
     MatToolbarModule,
     MatInputModule,
     PapaParseModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule 
   ],
   providers: [ElectronService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [PlayerProfileDialog]
 })
 export class AppModule { }
+
+//platformBrowserDynamic().bootstrapModule(AppModule);
