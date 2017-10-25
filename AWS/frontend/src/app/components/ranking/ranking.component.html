@@ -9,79 +9,86 @@
 
 <mat-card>ASDC Foosball Top Ranking</mat-card>
 <div class="example-container mat-elevation-z8">
-    <mat-table #table [dataSource]="dataSource">
+  <mat-tab-group class="tab-group" dynamicHeight="true">
+    <mat-tab label="Ranking">
+        <mat-table #table [dataSource]="dataSource">
 
-    <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
+        <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
 
-    <!-- Rank Column -->
-        <ng-container matColumnDef="rank">
-            <mat-header-cell *matHeaderCellDef> Rank </mat-header-cell>
-            <mat-cell *matCellDef="let element"> 
-                <span [ngClass]="{'red': !element.rankFlag, 'green': element.rankFlag}">{{element.rank}}</span> 
-            </mat-cell>
-        </ng-container>
+        <!-- Rank Column -->
+            <ng-container matColumnDef="rank">
+                <mat-header-cell *matHeaderCellDef> Rank </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <span [ngClass]="{'red': !element.rankFlag, 'green': element.rankFlag}">{{element.rank}}</span> 
+                </mat-cell>
+            </ng-container>
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-            <mat-cell *matCellDef="let element" (click)="onItemClick(element)"> {{element.name}} </mat-cell>
-        </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                <mat-cell *matCellDef="let element" (click)="onItemClick(element)"> {{element.name}} </mat-cell>
+            </ng-container>
 
-        <!-- Rating Column -->
-        <ng-container matColumnDef="rating">
-            <mat-header-cell *matHeaderCellDef> Rating </mat-header-cell>
-            <mat-cell *matCellDef="let element"> 
-                <span [ngClass]="{'red': !element.ratingFlag, 'green': element.ratingFlag}">{{element.rating}}</span>
-            </mat-cell>
-        </ng-container>
+            <!-- Rating Column -->
+            <ng-container matColumnDef="rating">
+                <mat-header-cell *matHeaderCellDef> Rating </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <span [ngClass]="{'red': !element.ratingFlag, 'green': element.ratingFlag}">{{element.rating}}</span>
+                </mat-cell>
+            </ng-container>
 
-        <!-- Offense Rating Column -->
-        <ng-container matColumnDef="offenseRanking">
-            <mat-header-cell *matHeaderCellDef> Offense Ranking </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.offenseRanking}} </mat-cell>
-        </ng-container>
+            <!-- Offense Rating Column -->
+            <ng-container matColumnDef="offenseRanking">
+                <mat-header-cell *matHeaderCellDef> Offense Ranking </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.offenseRanking}} </mat-cell>
+            </ng-container>
 
-        <!-- Offense Ranking Column -->
-        <ng-container matColumnDef="offense">
-            <mat-header-cell *matHeaderCellDef> Offense Rating </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.offense}} </mat-cell>
-        </ng-container>
+            <!-- Offense Ranking Column -->
+            <ng-container matColumnDef="offense">
+                <mat-header-cell *matHeaderCellDef> Offense Rating </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.offense}} </mat-cell>
+            </ng-container>
 
-        <!-- Defense Rating Column -->
-        <ng-container matColumnDef="defenseRanking">
-            <mat-header-cell *matHeaderCellDef> Defense Ranking </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.defenseRanking}} </mat-cell>
-        </ng-container>
+            <!-- Defense Rating Column -->
+            <ng-container matColumnDef="defenseRanking">
+                <mat-header-cell *matHeaderCellDef> Defense Ranking </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.defenseRanking}} </mat-cell>
+            </ng-container>
 
-        <!-- Defense Ranking Column -->
-        <ng-container matColumnDef="defense">
-            <mat-header-cell *matHeaderCellDef> Defense Rating </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.defense}} </mat-cell>
-        </ng-container>
+            <!-- Defense Ranking Column -->
+            <ng-container matColumnDef="defense">
+                <mat-header-cell *matHeaderCellDef> Defense Rating </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.defense}} </mat-cell>
+            </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-        <!-- Rating Column -->
-        <ng-container matColumnDef="oneDayPriorRanking">
-            <mat-header-cell *matHeaderCellDef> 1 Day Prior Ranking </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.oneDayPriorRanking}} </mat-cell>
-        </ng-container>
+            <!-- Rating Column -->
+            <ng-container matColumnDef="oneDayPriorRanking">
+                <mat-header-cell *matHeaderCellDef> 1 Day Prior Ranking </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.oneDayPriorRanking}} </mat-cell>
+            </ng-container>
 
-        <ng-container matColumnDef="oneDayPriorRating">
-            <mat-header-cell *matHeaderCellDef> 1 Day Prior Rating </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.oneDayPriorRating}} </mat-cell>
-        </ng-container>
+            <ng-container matColumnDef="oneDayPriorRating">
+                <mat-header-cell *matHeaderCellDef> 1 Day Prior Rating </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.oneDayPriorRating}} </mat-cell>
+            </ng-container>
 
-        <ng-container matColumnDef="oneWeekPriorRanking">
-            <mat-header-cell *matHeaderCellDef> 1 Week Prior Ranking </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.oneWeekPriorRanking}} </mat-cell>
-        </ng-container>
+            <ng-container matColumnDef="oneWeekPriorRanking">
+                <mat-header-cell *matHeaderCellDef> 1 Week Prior Ranking </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.oneWeekPriorRanking}} </mat-cell>
+            </ng-container>
 
-        <ng-container matColumnDef="oneWeekPriorRating">
-            <mat-header-cell *matHeaderCellDef> 1 Week Prior Rating </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.oneWeekPriorRating}} </mat-cell>
-        </ng-container>
-    </mat-table>
+            <ng-container matColumnDef="oneWeekPriorRating">
+                <mat-header-cell *matHeaderCellDef> 1 Week Prior Rating </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.oneWeekPriorRating}} </mat-cell>
+            </ng-container>
+        </mat-table>
+    </mat-tab>
+    <mat-tab label="Player Profile">
+      <player-profile></player-profile>
+    </mat-tab>
+  </mat-tab-group>
 </div>
