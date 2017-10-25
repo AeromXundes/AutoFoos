@@ -1,0 +1,22 @@
+.wrapper {
+    display: flex;
+    justify-content: center;  
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+}
+  
+.mat-table {
+  overflow: auto;
+}
+
+.red {
+    color: red; 
+}
+
+.green {
+    color: green;
+}
