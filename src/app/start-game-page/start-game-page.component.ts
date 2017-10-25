@@ -52,9 +52,6 @@ export class StartGamePageComponent implements OnInit {
   }
 
   rankings() {
-    console.log('hofsend');
-    
     this.router.navigateByUrl('hall-of-fame');
-    this._hof.send();
   }
 }

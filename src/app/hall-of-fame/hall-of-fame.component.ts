@@ -5,7 +5,6 @@ import { MatTableModule } from '@angular/material';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import { HofService  } from '../hof.service';
 
 let jsonData: Player[] = [];
 
@@ -68,17 +67,12 @@ export class HallOfFameComponent implements OnInit {
   private dataSource: PlayerDataSource;
   private ratingFlag: boolean;
   private rankFlag: boolean;
-  constructor(private papa: PapaParseService, private http: Http, private _hof: HofService) {
+  constructor(private papa: PapaParseService, private http: Http) {
   }
 
   ngOnInit() {
   }
 
-  ngAfterViewChecked() {
-    // this.showTopPlayers();
-  }
-
-  abc = this._hof.register(this.getShowTopPlayers());
 
   getShowTopPlayers() {
     var that = this;
