@@ -124,7 +124,7 @@ if __name__ == '__main__':
 
     #append game log (just winners and losers)
     f = open("gameLog.csv", "a")
-    f.write(",".join(args) + "\n")
+    f.write("\n" + ",".join(args))
     f.close()
 
     #converts currentStandings.csv to a index.html
