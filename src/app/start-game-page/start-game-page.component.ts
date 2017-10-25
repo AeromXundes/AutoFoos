@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GameStateService  } from '../game-state.service'
+import { GameStateService  } from '../game-state.service';
 import { Router } from '@angular/router';
 
 
@@ -48,5 +48,9 @@ export class StartGamePageComponent implements OnInit {
 
   editPlayer(): void {
     this.router.navigateByUrl('player-editor');
+  }
+
+  rankings() {
+    this.router.navigateByUrl('hall-of-fame');
   }
 }

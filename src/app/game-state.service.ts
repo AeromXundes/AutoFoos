@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AwsCommService  } from './aws-comm.service'
+import { AwsCommService  } from './aws-comm.service';
 
 @Injectable()
 export class GameStateService {

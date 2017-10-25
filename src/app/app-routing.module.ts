@@ -4,6 +4,7 @@ import { SubmissionPageComponent } from './submission-page/submission-page.compo
 import { DiscardConfirmationComponent } from './discard-confirmation/discard-confirmation.component';
 import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
 import { PlayerEditorComponent } from './components/player-editor/player-editor.component';
+import { HallOfFameComponent } from './hall-of-fame/hall-of-fame.component';
 
 import { StartGamePageComponent } from './start-game-page/start-game-page.component';
 import { NgModule } from '@angular/core';
@@ -29,6 +30,10 @@ const routes: Routes = [
     {
         path: 'discard-confirmation',
         component: DiscardConfirmationComponent
+    },
+    {
+        path: 'hall-of-fame',
+        component: HallOfFameComponent
     }
 ];
 

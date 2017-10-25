@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ElectronService } from './providers/electron.service';
-import {GameStateService} from './game-state.service'
-import {PlayersListService} from './players-list.service'
-import { AwsCommService} from './aws-comm.service'
+import {GameStateService} from './game-state.service';
+import {PlayersListService} from './players-list.service';
+import { AwsCommService} from './aws-comm.service';
 
 @Component({
   selector: 'app-root',

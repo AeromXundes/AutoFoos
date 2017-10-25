@@ -22,3 +22,62 @@
 .green {
     color: green;
 }
+
+.menu-button {
+    height: 50px;
+  }
+  
+  .column {
+    display: block;
+    width: 100%;
+  }
+  
+  .column-left {
+    padding-left: 75px;
+  }
+  
+  .column-right {
+    margin-left:auto; margin-right:0;
+    padding-right: 75px;
+    text-align: right;
+  }
+
+  i.fa-futbol-o {
+    -webkit-animation-name: rotate; 
+    -webkit-animation-duration: 5s; 
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: rotate; 
+    -moz-animation-duration: 5s; 
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    animation-name: rotate; 
+    animation-duration: 5s; 
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+  
+  @-webkit-keyframes rotate {
+    from {-webkit-transform: rotate(0deg);}
+    to {-webkit-transform: rotate(360deg);}
+  }
+  
+  @-moz-keyframes rotate {
+    from {-moz-transform: rotate(0deg);}
+    to {-moz-transform: rotate(360deg);}
+  }
+  
+  @keyframes rotate {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+  }
+
+  .fill-remaining-space {
+    // This fills the remaining space, by using flexbox. 
+    // Every toolbar row uses a flexbox row layout.
+    flex: 1 1 auto;
+  }
+  
+  i {
+    margin-left: 8px;
+  }
