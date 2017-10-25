@@ -14,7 +14,7 @@ import 'rxjs/add/observable/of'
 
 export class HallOfFameComponent implements OnInit {
 
-  private dataSource: PlayerDataSource;
+  dataSource: PlayerDataSource;
   private ratingFlag: boolean;
   private rankFlag: boolean;
   constructor(private papa: PapaParseService, private http: Http) {
