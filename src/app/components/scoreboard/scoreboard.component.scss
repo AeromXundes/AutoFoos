@@ -1,4 +1,57 @@
-.score-panel {
+// *********************
+// TOOLBAR STYLING
+// *********************
+
+.fill-remaining-space {
+  // This fills the remaining space, by using flexbox. 
+  // Every toolbar row uses a flexbox row layout.
+  flex: 1 1 auto;
+}
+
+i {
+  margin-left: 8px;
+}
+
+.menu-button {
+  height: 50px;
+}
+
+i.fa-futbol-o {
+  -webkit-animation-name: rotate; 
+  -webkit-animation-duration: 5s; 
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-name: rotate; 
+  -moz-animation-duration: 5s; 
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  animation-name: rotate; 
+  animation-duration: 5s; 
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@-webkit-keyframes rotate {
+  from {-webkit-transform: rotate(0deg);}
+  to {-webkit-transform: rotate(360deg);}
+}
+
+@-moz-keyframes rotate {
+  from {-moz-transform: rotate(0deg);}
+  to {-moz-transform: rotate(360deg);}
+}
+
+@keyframes rotate {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+
+// ***********************
+// END TOOLBAR STYLING
+// ***********************
+
+.content-area {
+  height: 100%;
 }
 
 .score-cell {
@@ -9,20 +62,8 @@
   display: inline-block;  
 }
 
-// .gold-cell {
-//   background-color: rgba(255, 213, 0, 0.5);
-// }
-
-// .black-cell {
-//   background-color: rgba(0, 0, 0, 0.473);
-// }
-
-
-.button-panel {
-  width: 20%;
-}
-
 .time {
   text-align: center;
-  font-size: 200%;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }

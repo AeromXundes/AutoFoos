@@ -9,18 +9,23 @@ mat-card {
   margin-right: auto;
 }
 
-button.swap-button {
-  min-width: 50px;
-}
-
 .score {
     font-size: 72px;
     font-weight: bold;
 }
 
-button {
-  height: 120px;
-  width: 120px;
+.swap-button {
+  height: 60px;
+  width: 60px;
+}
+
+span.mat-button-wrapper {
+  padding: 12px !important;
+}
+
+.score-button {
+  height: 90px;
+  width: 90px;
 }
 
 .team-name {
@@ -38,4 +43,8 @@ button {
 .button-panel {
   margin-left: auto;
   padding-left: 35px;
+}
+
+.material-icons.md-36 {    
+  font-size: 36px;
 }
