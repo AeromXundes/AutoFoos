@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GameStateService  } from '../game-state.service'
+import { GameStateService  } from '../game-state.service';
+import { HofService  } from '../hof.service';
 import { Router } from '@angular/router';
 
 
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class StartGamePageComponent implements OnInit {
   private backgroundUrl: ImageData;
 
-  constructor(private _gameState: GameStateService, private router: Router) { }
+  constructor(private _gameState: GameStateService, private router: Router, private _hof: HofService) { }
 
 
   ngOnInit() {
@@ -48,5 +49,12 @@ export class StartGamePageComponent implements OnInit {
 
   editPlayer(): void {
     this.router.navigateByUrl('player-editor');
+  }
+
+  rankings() {
+    console.log('hofsend');
+    
+    this.router.navigateByUrl('hall-of-fame');
+    this._hof.send();
   }
 }

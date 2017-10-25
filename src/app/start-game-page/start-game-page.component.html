@@ -13,14 +13,18 @@
     <button class="menu-button" mat-button (click)="startGame()">
       <span class="mat-h2">Start<i class="fa fa-flag-checkered fa-lg" aria-hidden="true"></i></span>
     </button>
+    <button class="menu-button" mat-button (click)="rankings()">
+        <span class="mat-h2">Rankings<i class="fa fa-trophy" aria-hidden="true"></i></span>
+      </button>
   </span>
 </mat-toolbar>
 
 
 <!-- TAB GROUPS -->
 <div class="content-area">
+    
   <mat-tab-group class="tab-group" dynamicHeight="true">
-      
+      <div (click)="hofsend()">
     <mat-tab label="Player Selection">
 
       <mat-grid-list class="background-image" [style.backgroundImage]="'url('+ backgroundUrl +')'" cols="2">
@@ -43,8 +47,12 @@
       </mat-grid-list>
     </mat-tab>
     
-    <mat-tab label="Hall of Fame">
+    <div onclick="hofsend()">
+    <mat-tab label="Hall of Fame" >
       <app-hall-of-fame></app-hall-of-fame>
     </mat-tab>
+    </div>
+  </div>
   </mat-tab-group>
+
 </div>

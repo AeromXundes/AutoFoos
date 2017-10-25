@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { ElectronService } from './providers/electron.service';
-import {GameStateService} from './game-state.service'
-import {PlayersListService} from './players-list.service'
-import { AwsCommService} from './aws-comm.service'
+import {GameStateService} from './game-state.service';
+import {PlayersListService} from './players-list.service';
+import { AwsCommService} from './aws-comm.service';
+import { HofService} from './hof.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [GameStateService,  PlayersListService, AwsCommService]
+  providers: [GameStateService,  PlayersListService, AwsCommService, HofService]
 })
 export class AppComponent {
   constructor(public electronService: ElectronService) {
