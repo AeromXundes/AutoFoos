@@ -19,12 +19,13 @@ export class RankingComponent implements OnInit {
   private dataSource: PlayerDataSource;
   private ratingFlag: boolean;
   private rankFlag: boolean;
+
   constructor(private papa: PapaParseService, private http: Http, private router:Router) {
   }
 
   ngOnInit() {
     this.showTopPlayers();
-  }
+ }
 
   ngAfterViewChecked() {
 //    this.showTopPlayers();
