@@ -1,4 +1,4 @@
-import { app, BrowserWindow, globalShortcut, screen } from 'electron';
+import { app, BrowserWindow, globalShortcut, screen, ipcRenderer } from 'electron';
 import * as path from 'path';
 
 let win, serve;
@@ -87,3 +87,20 @@ var loserOffense = 'Ghi';
 var loserDefense = 'Jkl';
 var loserScore = '4';
 var py = spawn('python', ['RasberryElo.py', winnerOffense,  winnerDefense, loserOffense, loserDefense, loserScore]);
+
+
+var net = require('net');
+var server = net.createServer(function (conn) {
+  conn.on('data', function(data) {
+    data = JSON.parse(data)
+    if(data.response === 'gs')
+    {
+      this.ipcRenderer.send("gs");
+    }
+    if(data.response === 'bs')
+    {
+      this.ipcRenderer.send("bs");
+    }
+  });
+});
+server.listen(61337, "localhost", function() {});
