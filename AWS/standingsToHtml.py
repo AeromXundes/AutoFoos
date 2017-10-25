@@ -4,6 +4,7 @@ import csv
 import string
 import datetime
 from pytz import timezone
+import json
 
 def genHtml(row, date):
     playerName = row[0]
@@ -62,6 +63,14 @@ def genHtml(row, date):
 
     f.close()
 
+    h = open("players/" + playerName + ".json" , "w")
+    playerMap = {"Name": playerName, "overallRank": row[4], "overallPoints": row[1], "offenseRank": row[5], "offensePoints" : row[2],
+                    "defenseRank": row[6], "defensePoints": row[3], "oneDayPrior": row[8], "oneWeekPrior": row[12], "Winning Percentage": WinningPerc,
+                    "gamesPlayed" : gamesPlayed, "gamesWon": gamesWon, "gamesLost": gamesPlayed - gamesWon, "longestWinningStreak": longestWinningStreak,
+                    "longestLosingStreak": longestLosingStreak}
+    h.write(json.dumps(playerMap))
+    h.close()
+
 with open("currentStandings.csv", 'r') as csvfile:
     date = datetime.datetime.now(timezone('US/Eastern'))
     table_string = ""
@@ -96,7 +105,7 @@ with open("currentStandings.csv", 'r') as csvfile:
             table_string+= "<tr><td>" + row[4] + "</td><td><a href=./players/"+ playerName + ".html>" + playerName + "</a></td><td>" + str(round(float(row[1]), 1)) + "</td><td>" + \
                     row[5] + " | " + str(round(float(row[2]), 1)) + '</td><td>' + row[6] + " | " + str(round(float(row[3]), 1)) + '</td><td bgcolor="' + yesColor + '">' +\
                     row[8] + '</td><td bgcolor="' + weekColor + '">' + row[12] + "</td></tr>\n"
-            genHtml(row, date)
+        genHtml(row, date)
 
     
     f.write(table_string)
