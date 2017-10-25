@@ -21,17 +21,14 @@ export class HallOfFameComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.showTopPlayers();
   }
-
-  ngAfterViewChecked() {
-    // this.showTopPlayers();
-  }
-
 
   showTopPlayers() {
+    jsonData = [];
     this.http.get("http://10.240.132.121/current_ranking").subscribe(
       data => {
-        jsonData = [];
+        //jsonData = [];
         let csvString = data["_body"].toString();
         this.papa.parse(csvString, {
           complete: function(results) {
@@ -60,13 +57,14 @@ export class HallOfFameComponent implements OnInit {
             }
           }
       });
+      this.dataSource = new PlayerDataSource();
       },
       error => {
         jsonData.push(new player(NaN, false, "", "", false, NaN, NaN, NaN, NaN));
+        this.dataSource = new PlayerDataSource();
       }
 
     );
-    this.dataSource = new PlayerDataSource(); 
   }
 
   displayedColumns = ['rank', 'name', 'rating', 'offenseRanking', 'offense','defenseRanking', 'defense'];
