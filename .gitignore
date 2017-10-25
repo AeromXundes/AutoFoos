@@ -4,3 +4,4 @@ node_modules
 app-builds
 package-lock.json
 *.swp
+AWS/players
