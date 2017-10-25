@@ -92,10 +92,10 @@ var py = spawn('python', ['RasberryElo.py', winnerOffense,  winnerDefense, loser
 // Sensor stuff
 
 // BCM numbering
-const pin_ledYel = 12;
-const pin_irRecvGold = 16;
-const pin_irRecvBlack = 15;
-const pin_ledRed = 7;
+const pin_ledYel = 18;
+const pin_irRecvGold = 23;
+const pin_irRecvBlack = 22;
+const pin_ledRed = 4;
 
 var goldScore = 0;
 var blackScore = 0;
@@ -103,6 +103,8 @@ var blackScore = 0;
 var Gpio = require('pigpio').Gpio;
 var ledYel = new Gpio(pin_ledYel, {mode: Gpio.OUTPUT});
 var ledRed = new Gpio(pin_ledRed, {mode: Gpio.OUTPUT});
+ledYel.digitalWrite(0);
+ledRed.digitalWrite(0);
 var irRecvGold = new Gpio(pin_irRecvGold, {
   mode: Gpio.INPUT,
   pullUpDown: Gpio.PUD_UP,
@@ -114,17 +116,7 @@ var irRecvBlack = new Gpio(pin_irRecvBlack, {
   edge: Gpio.EITHER_EDGE
 });
 
-function mapIrToLed(channel) {
-  if (channel === pin_irRecvGold) {
-    return pin_ledYel;
-  } else if (channel === pin_irRecvBlack) {
-    return pin_ledRed;
-  } else {
-    return -1;
-  }
-}
-
-function goldBeamConnected(connected: boolean) {
+function goldBeamConnected(connected) {
   if (connected) {
     ledYel.digitalWrite(1);
   } else {
@@ -132,7 +124,7 @@ function goldBeamConnected(connected: boolean) {
   }
 }
 
-function blackBeamConncted(connected: boolean) {
+function blackBeamConncted(connected) {
   if (connected) {
     ledRed.digitalWrite(1);
   } else {
@@ -151,21 +143,38 @@ function incrementBlackScore() {
 }
 
 irRecvBlack.on('interrupt', function(level) {
+  console.log('black interrupt');
   if (level === 1) {
     // rising edge detected, so beam was connected
+    console.log('black rising');
     blackBeamConncted(true);
   } else {
     // falling edge detected, so beam was just broken
+    console.log('black falling');
     blackBeamConncted(false);
     incrementBlackScore();
   }
 });
 
 irRecvGold.on('interrupt', function(level) {
+  console.log('gold interrupt');
   if (level === 1) {
+	console.log('gold rising');
     goldBeamConnected(true);
   } else {
+	console.log('gold falling');
     goldBeamConnected(false);
     incrementGoldScore();
   }
 });
+
+if (irRecvGold.digitalRead() === 1) {
+  console.log('gold initially high');
+  goldBeamConnected(true);
+}
+if (irRecvBlack.digitalRead() === 1) {
+  console.log('black initially high');
+  blackBeamConncted(true);
+}
+
+console.log('started');
