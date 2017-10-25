@@ -5,6 +5,11 @@ let win, serve;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
 
+
+// Disable Hardware Acceleration
+// => Significatly improves performance on the rapsi
+app.disableHardwareAcceleration();
+
 if (serve) {
   require('electron-reload')(__dirname, {
   });
