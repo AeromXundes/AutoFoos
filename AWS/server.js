@@ -16,7 +16,7 @@ var fs = require('fs');
 var fse = require('fs-extra');
 
 appInterface.use(bodyParser.json());
-//appInterface.use(express.static(path.join(__dirname, 'foos-front/dist')));
+appInterface.use(express.static(path.join(__dirname, 'frontend/dist')));
 
 // Handle /current_ranking
 appInterface.get('/current_ranking', (req, res) => {
@@ -47,8 +47,8 @@ appInterface.post('/update_data', (req, res) => {
 
 appInterface.get('/', (req, res) => {
  // res.redirect('https://jpkolbush.github.io/index.html');
- res.sendFile(path.join(__dirname, '/index.html'));
-// res.sendFile(path.join(__dirname, 'foos-front/dist/index.html'));
+// res.sendFile(path.join(__dirname, '/index.html'));
+ res.sendFile(path.join(__dirname, 'frontend/dist/index.html'));
 })
 
 appInterface.get('*', (req, res) => {

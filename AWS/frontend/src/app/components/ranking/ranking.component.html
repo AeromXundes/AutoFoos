@@ -1,18 +1,4 @@
-
-<mat-toolbar color="primary">
-        <span>AutoFoos<i class="fa fa-futbol-o fa-lg"></i></span>
-          
-        <!-- This fills the remaining space of the current row -->
-        <span class="fill-remaining-space"></span>
-          
-        <span>
-          <button class="menu-button" mat-button (click)="back()">
-            <span class="mat-h2">Back<i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i></span>
-          </button>
-        </span>
-      </mat-toolbar>
-
-
+<mat-card>ASDC Foosball Top Ranking</mat-card>
 <div class="example-container mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource">
 
@@ -30,7 +16,7 @@
         <!-- Name Column -->
         <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+            <mat-cell *matCellDef="let element" (click)="onItemClick(element)"> {{element.name}} </mat-cell>
         </ng-container>
 
         <!-- Rating Column -->
@@ -67,5 +53,26 @@
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+        <!-- Rating Column -->
+        <ng-container matColumnDef="oneDayPriorRanking">
+            <mat-header-cell *matHeaderCellDef> 1 Day Prior Ranking </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.oneDayPriorRanking}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="oneDayPriorRating">
+            <mat-header-cell *matHeaderCellDef> 1 Day Prior Rating </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.oneDayPriorRating}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="oneWeekPriorRanking">
+            <mat-header-cell *matHeaderCellDef> 1 Week Prior Ranking </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.oneWeekPriorRanking}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="oneWeekPriorRating">
+            <mat-header-cell *matHeaderCellDef> 1 Week Prior Rating </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.oneWeekPriorRating}} </mat-cell>
+        </ng-container>
     </mat-table>
 </div>

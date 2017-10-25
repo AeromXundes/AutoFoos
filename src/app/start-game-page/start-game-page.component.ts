@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./start-game-page.component.scss']
 })
 export class StartGamePageComponent implements OnInit {
-  private backgroundUrl: ImageData;
+  backgroundUrl: ImageData;
 
   constructor(private _gameState: GameStateService, private router: Router) { }
 

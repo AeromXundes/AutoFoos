@@ -28,6 +28,7 @@ export interface Player {
 export class PlayerDataSource extends DataSource<any> {
   connect(): Observable<Player[]>{
     return Observable.of(jsonData);
+
   }
   disconnect(){}
 }
