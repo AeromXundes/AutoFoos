@@ -38,12 +38,12 @@ export class RankingComponent implements OnInit {
 //    let profilePage = new PlayerProfileComponent(element);
     console.log(element);
     //TODO statically redirect the page
-    window.location.assign('http://localhost/players/' +  element.name + '.html');
+    window.location.assign('http://10.240.132.121/players/' +  element.name + '.html');
   }
 
 
   showTopPlayers() {
-    this.http.get("http://localhost/current_ranking").subscribe(
+    this.http.get("http://10.240.132.121/current_ranking").subscribe(
       data => {
         jsonData = [];
         let csvString = data["_body"].toString();
