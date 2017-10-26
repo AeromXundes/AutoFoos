@@ -1,10 +1,14 @@
-import { app, BrowserWindow, globalShortcut, screen, ipcRenderer } from 'electron';
+import { app, BrowserWindow, globalShortcut, screen, ipcMain } from 'electron';
 import * as path from 'path';
 
 let win, serve;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
 
+//const ipcRenderer = require('electron').ipcRenderer;
+
+let rendererGold;
+let rendererBlack;
 
 // Disable Hardware Acceleration
 // => Significatly improves performance on the rapsi
@@ -88,6 +92,14 @@ var loserDefense = 'Jkl';
 var loserScore = '4';
 var py = spawn('python', ['RasberryElo.py', winnerOffense,  winnerDefense, loserOffense, loserDefense, loserScore]);
 
+ipcMain.on('registerGold', (event, arg) => {
+  rendererGold = event.sender;
+})
+
+ipcMain.on('registerBlack', (event, arg) => {
+  rendererBlack = event.sender;
+})
+
 
 var net = require('net');
 var server = net.createServer(function (conn) {
@@ -95,11 +107,11 @@ var server = net.createServer(function (conn) {
     data = JSON.parse(data)
     if(data.response === 'gs')
     {
-      this.ipcRenderer.send("gs");
+      rendererGold.send('gs', 'gs')
     }
     if(data.response === 'bs')
     {
-      this.ipcRenderer.send("bs");
+      rendererBlack.send('bs', 'bs')
     }
   });
 });

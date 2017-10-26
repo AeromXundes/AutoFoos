@@ -30,9 +30,6 @@ export class ScoreboardComponent implements OnInit {
     }
 
     time.value = m + ':' + s;
-    console.log('time.value is now');
-    console.log(obj);
-    console.log(time.value);
   }
   
 
@@ -41,10 +38,8 @@ export class ScoreboardComponent implements OnInit {
     var time = this.time;
     var setter = this.setTime;
     return function() {
-      console.log('timer!');
       var t = state.getElapsedTime();
       t.seconds = Math.floor(t.seconds);
-      console.log(t);
       setter(t, time);
     }
   }
