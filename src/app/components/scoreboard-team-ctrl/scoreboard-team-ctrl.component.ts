@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, NgZone } from '@angular/core';
 import { GameStateService  } from '../../game-state.service'
 
 @Component({
@@ -7,6 +7,8 @@ import { GameStateService  } from '../../game-state.service'
   styleUrls: ['./scoreboard-team-ctrl.component.scss']
 })
 export class ScoreboardTeamCtrlComponent implements OnInit {
+
+  private ipcRenderer = window.require('electron').ipcRenderer;
 
   private currentScore: number;
 
@@ -19,9 +21,17 @@ export class ScoreboardTeamCtrlComponent implements OnInit {
   @Output()
   scoreChange = new EventEmitter();
 
-  constructor(private _gameState: GameStateService) { }
+  constructor(private _gameState: GameStateService, private ngZone: NgZone) {}
 
   ngOnInit() {
+    console.log('register' + this.teamName);
+    this.ipcRenderer.send('register'+this.teamName);
+    if (this.teamName === 'Gold') {
+      this.ipcRenderer.on('gs', (event, arg) => { console.log('sensor: gold scored'); this.addScore()});
+    }
+    else if (this.teamName === 'Black') {
+      this.ipcRenderer.on('bs', (event, arg) => { console.log('sensor: black scored'); this.addScore();});
+    }
     this.setPlayers();
   }
 

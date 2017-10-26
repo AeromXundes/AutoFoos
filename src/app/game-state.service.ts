@@ -1,11 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { AwsCommService  } from './aws-comm.service';
 
 @Injectable()
 export class GameStateService {
+  private ipcRenderer = window.require('electron').ipcRenderer;
 
 
-  constructor(private _aws: AwsCommService) {};
+  constructor(private _aws: AwsCommService, private ngZone: NgZone) {
+    this.ngZone.runOutsideAngular( ()=> {
+      this.ipcRenderer.on('gs', (event, arg) => { console.log('sensor: gold scored')});
+      this.ipcRenderer.on('bs', (event, arg) => { console.log('sensor: black scored')});
+    });
+  };
 
   eventsList = [];
 
@@ -126,5 +132,6 @@ export class GameStateService {
     this.totalTimeInPause = 0;
     this.currentPause = 0;
   }
+
 
 }
