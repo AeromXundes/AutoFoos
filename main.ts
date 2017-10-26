@@ -107,11 +107,17 @@ var server = net.createServer(function (conn) {
     data = JSON.parse(data)
     if(data.response === 'gs')
     {
-      rendererGold.send('gs', 'gs')
+      if (rendererGold !== undefined)
+      {
+        rendererGold.send('gs', 'gs')
+      }
     }
     if(data.response === 'bs')
     {
-      rendererBlack.send('bs', 'bs')
+      if (rendererBlack !== undefined)
+      {
+        rendererBlack.send('bs', 'bs')
+      }
     }
   });
 });
