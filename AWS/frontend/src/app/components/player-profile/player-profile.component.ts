@@ -58,37 +58,43 @@ export class PlayerProfileComponent implements OnInit {
 
   getPlayersList() {
     //I don't know why, but the name strings need to be wrapped in an oj=bject. Raw array of strings won't work
-    let list = [];
     this.http.get("http://10.240.132.121/current_ranking").subscribe(
       data => {
         let csvString = data["_body"].toString();
         this.papa.parse(csvString, {
           complete: function(results) {
             let endIndex = 10;
+            let list = [];
             if (results.data.length - 1 < endIndex)
               endIndex = results.data.length - 1;
             for(let k = 0; k < results.data.length - 1; ++k){
               let currPlayerData = results.data[k];
               if (currPlayerData !== "") {
-                this.list.push(currPlayerData[0])
+                list.push(currPlayerData[0])
               }
             }
+            list.sort();
+            var ret = [];
+            for (var i = 0;  i < list.length;  i++) {
+              if (list[i] == '') {
+                continue;
+              }
+              ret.push({name: list[i]})
+            }
+	    this.players = ret;
           }
         });
       });
-
-//    var list = this._playersList.getPlayersList();
-
-    list.sort();
-    var ret = [];
-    for (var i = 0;  i < list.length;  i++) {
-      if (list[i] == '') {
-        continue;
-      }
-      ret.push({name: list[i]})
+    let list2 = ["Ajith","Alex","Bing","Brian","Chris","Dan","DanielG","Jacques","Jason","Jayanth","Joanna","JohnH","JonJ","KevinG","KevinL","Kwang","Lisa","Melisa","Pace","Raihan","Reynolds","Sneha","Trevor","Zach"];
+    let players2 = [];
+  
+    for (let k = 0; k < list2.length; ++k) {
+      players2.push({name: list2[k]});
     }
-    return ret; 
+    return players2;
+
   }
+
   players = this.getPlayersList();
   playerName: string;
 }

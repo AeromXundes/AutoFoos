@@ -51,15 +51,9 @@ export class RankingComponent implements OnInit {
         let csvString = data["_body"].toString();
         this.papa.parse(csvString, {
           complete: function(results) {
-            let endIndex = 10;
+            let endIndex = 12;
             if (results.data.length - 1 < endIndex)
               endIndex = results.data.length - 1;
-            for(let k = 0; k < results.data.length - 1; ++k){
-              let currPlayerData = results.data[k];
-              if (currPlayerData !== "") {
-                this._playersList.addPlayer(currPlayerData[0]);
-              }
-            }
             for(let k = 0; k < endIndex; ++k){
               let currPlayerData = results.data[k];
               if (currPlayerData !== "")
