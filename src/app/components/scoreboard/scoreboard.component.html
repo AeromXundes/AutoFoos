@@ -1,29 +1,27 @@
-<!-- Can't get the size of this right -->
-<!-- <mat-toolbar color="primary">
-  <span class="example-spacer"></span>    
-  <span>AutoFoos</span>
-</mat-toolbar> -->
-  
-<!-- <div class="header">
-  <h1 class="mat-display-1">Game Scoreboard</h1>
-</div> -->
 
-<div class="score-panel">
-    
-    <div class="content-cell score-cell gold-cell">
-        <app-scoreboard-team-ctrl [(score)]="goldScore" teamName="Gold"></app-scoreboard-team-ctrl>
-    </div>
+<!-- PAGE MENU -->
+<mat-toolbar color="primary">
+    <span class="menu-section">AutoFoos<i class="fa fa-futbol-o fa-lg"></i></span>
+    <span class="menu-section time mat-display-2">{{time.value}}</span>
+    <span class="menu-section">
+        <span class="menu-right">
+            <button class="menu-button" mat-button (click)="end()">
+                <span class="mat-h2">Pause / End<i class="fa fa-share fa-lg" aria-hidden="true"></i></span>
+            </button>
+        </span>
+    </span>
+</mat-toolbar>
 
-    <div class="content-cell button-panel">
-        <div class="time"><p>{{time.value}}</p></div>
-        <button mat-raised-button color="primary" id="end" (click)="end()">End</button>
-    </div>
 
-    <div class="content-cell score-cell">
-
+<div class="content-area">
+    <div class="content-cell score-cell black-panel">
+        <div class="label black-label mat-display-3">BLACK</div>
         <app-scoreboard-team-ctrl [(score)]="blackScore" teamName="Black"></app-scoreboard-team-ctrl>        
     </div>
+    <div class="content-cell score-cell gold-panel">
+        <div class="label gold-label mat-display-3">GOLD</div>
+        <app-scoreboard-team-ctrl [(score)]="goldScore" teamName="Gold"></app-scoreboard-team-ctrl>
+    </div>
 </div>
-
 
 

@@ -5,37 +5,72 @@ mat-card-header{
 
 mat-card {
   width: 200px;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 0px;
 }
 
-button.swap-button {
-  min-width: 50px;
+mat-card-title {
+  margin: 0px;
+}
+
+.mat-title {
+  margin-bottom: 0px;
+}
+
+.flex-column-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-item-centered {
+  align-self: center;
+}
+
+.player-group {
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-bottom: 5px;
+}
+
+.flex-row-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.side-button {
+  align-self: stretch;
+}
+
+.score-button {
+  height: 100%;
 }
 
 .score {
-    font-size: 72px;
+    font-size: 220px;
     font-weight: bold;
 }
 
-button {
-  height: 120px;
-  width: 120px;
-}
-
-.team-name {
-  font-size: 24px;
+.swap-div {
 }
 
 .swap-button {
-  float: right;
+  padding: 0px;
+  height: 60px;
+  width: 60px;
 }
 
-.end {
-  clear: both;
+.mat-button-wrapper {
+  padding: 12px 0 !important;
 }
 
-.button-panel {
-  margin-left: auto;
-  padding-left: 35px;
+.name {
+  margin-left: 15px;
+}
+
+.material-icons.md-36 { 
+  font-size: 30px;
+}
+
+.material-icons.md-48 {    
+  font-size: 48px;
 }

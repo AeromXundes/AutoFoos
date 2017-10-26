@@ -1,27 +1,33 @@
 
-<div class="player-group">
-  <div class="swap-button">
-      <button mat-fab (click)="swap()"><i class="material-icons">swap_vert</i></button>
+<div class="flex-column-container">
+  <div class="flex-row-container player-group">
+      <div class="player-names">
+          <div>
+            <span class="mat-headline">OFF</span><span class="name mat-title">{{offensePlayer}}</span>
+          </div>
+          <div>
+            <span class="mat-headline">DEF</span><span class="name mat-title">{{defensePlayer}}</span>
+          </div>
+      </div>
+      <div class="swap-div" id="override-div">
+        <button mat-fab class="swap-button" color="primary" (click)="swap()">
+          <i class="material-icons md-36">swap_vert</i>
+        </button>
+      </div>
   </div>
-  <div class="player-names">
-      <div class="mat-title">Offense: {{offensePlayer}}</div>
-      <div class="mat-title">Defense: {{defensePlayer}}</div>
+  <div class="flex-item-centered flex-row-container">
+    <div class="side-button">
+      <button mat-button class="score-button" (click)="subScore()"><i class="material-icons md-48">remove</i></button>                    
+    </div>
+    <div>
+      <mat-card (click)="addScore()">
+        <mat-card-header>
+          <mat-card-title class="score score-card">{{score}}</mat-card-title>
+        </mat-card-header>
+      </mat-card>
+    </div>
+    <div class="side-button">
+      <button mat-button class="score-button" (click)="addScore()"><i class="material-icons md-48">add</i></button>                          
+    </div>   
   </div>
-  <div class="end"></div>
-</div>
-
-
-<div>
-  <mat-card (click)="addScore()">
-    <mat-card-header>
-      <mat-card-title class="score score-card" >{{score}}</mat-card-title>
-      <mat-card-subtitle class="score-card team-name">Team {{teamName}}</mat-card-subtitle>
-    </mat-card-header>
-  </mat-card>
-    
-  <div class="button-panel">
-    <button mat-raised-button color="primary" (click)="addScore()"><i class="material-icons">add</i></button>    
-    <button mat-raised-button color="warn" (click)="subScore()"><i class="material-icons">remove</i></button> 
-  </div>
-
 </div>

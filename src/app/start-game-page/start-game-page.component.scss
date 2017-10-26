@@ -1,9 +1,6 @@
-mat-toolbar {
-  // max-height: 20px;
-}
-.content-area {
-  height: 100%;
-}
+// *********************
+// TOOLBAR STYLING
+// *********************
 
 .fill-remaining-space {
   // This fills the remaining space, by using flexbox. 
@@ -17,64 +14,6 @@ i {
 
 .menu-button {
   height: 50px;
-}
-
-.column {
-  display: block;
-  width: 100%;
-}
-
-.column-left {
-  padding-left: 75px;
-}
-
-.column-right {
-  margin-left:auto; margin-right:0;
-  padding-right: 75px;
-  text-align: right;
-}
-  
-.text-center {
-  text-align: center;
-}
-
-.wrapper {
-  display: flex;
-  justify-content: center;  
-}
-
-.background-image {
-  background-repeat: no-repeat;
-  background-size: 230px;  
-  background-attachment: fixed;
-  background-position: 50% 90%; 
-}
-
-.tab-group {
-  height: 100%;
-}
-
-.gold-panel {
-  background-color: rgba(255, 255, 224, 0.801);
-}
-
-.black-panel {
-  background-color: rgba(211, 211, 211, 0.808);
-  border-right: 1px solid black !important;
-}
-
-.label {
-  margin-bottom: 10px;
-}
-
-.gold-label {
-  color: darkgoldenrod;
-  font-weight: 200;
-}
-
-.black-label {
-  display: block;
-  font-weight: 200;
 }
 
 i.fa-futbol-o {
@@ -106,3 +45,69 @@ i.fa-futbol-o {
   from {transform: rotate(0deg);}
   to {transform: rotate(360deg);}
 }
+
+// ***********************
+// END TOOLBAR STYLING
+// ***********************
+
+.content-area {
+  height: 100%;
+}
+
+mat-grid-tile {
+  height: 20px;
+}
+
+.background-image {
+  background-repeat: no-repeat;
+  background-size: 230px;  
+  background-attachment: fixed;
+  background-position: 50% 90%; 
+}
+
+.column {
+  display: block;
+  width: 100%;
+}
+
+.column-left {
+  padding-left: 75px;
+}
+
+.column-right {
+  margin-left:auto; margin-right:0;
+  padding-right: 75px;
+  text-align: right;
+}
+  
+.text-center {
+  text-align: center;
+}
+
+.tab-group {
+  height: 100%;
+}
+
+.gold-panel {
+  background-color: rgba(255, 255, 224, 0.801);
+}
+
+.black-panel {
+  background-color: rgba(211, 211, 211, 0.808);
+  border-right: 1px solid black !important;
+}
+
+.label {
+  margin-bottom: 10px;
+}
+
+.gold-label {
+  color: darkgoldenrod;
+  font-weight: 200;
+}
+
+.black-label {
+  display: block;
+  font-weight: 200;
+}
+
