@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { DataSource } from '@angular/cdk/collections';
+import { Component, OnInit, Inject } from '@angular/core';
+import { Http } from '@angular/http';
+import { PlayersListService  } from '../../players-list.service'
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'player-profile',
@@ -8,62 +10,81 @@ import { DataSource } from '@angular/cdk/collections';
 })
 export class PlayerProfileComponent implements OnInit {
 
-//  constructor(private element:player) { }
-//  constructor(private element:string) { }
-  constructor() { }
+  constructor(private _playersList: PlayersListService, public dialog: MatDialog, private http: Http) { }
 
   ngOnInit() {
-//    console.log(this.element);
-//    console.log(this.playerData);
   }
 
-}
-
-export class player implements Player{
-  rank: number;
-  rankFlag: boolean;
-  name: string;
-  rating: string;
-  ratingFlag: boolean;
-  offenseRanking: number;
-  offense: number;
-  defenseRanking: number;
-  defense: number;
-  oneDayPriorRanking: number;
-  oneDayPriorRating: number;
-  oneWeekPriorRanking: number;
-  oneWeekPriorRating: number;
-
-  constructor(rank: number, rankFlag: boolean, name: string, rating: string, ratingFlag: boolean, offenseRanking: number, offense: number, defenseRanking: number, defense: number,
-    oneDayPriorRanking: number, oneDayPriorRating: number, oneWeekPriorRanking: number, oneWeekPriorRating: number ){
-    this.rank = rank;
-    this.rankFlag = rankFlag;
-    this.name = name;
-    this.rating = rating;
-    this.ratingFlag = ratingFlag;
-    this.offense = offense;
-    this.offenseRanking = offenseRanking;
-    this.defense = defense;
-    this.defenseRanking = defenseRanking;
-    this.oneDayPriorRanking = oneDayPriorRanking;
-    this.oneDayPriorRating = oneDayPriorRating;
-    this.oneWeekPriorRanking = oneWeekPriorRanking;
-    this.oneWeekPriorRating = oneWeekPriorRating;
+  selection(name){
+    console.log(name);
+    this.http.get("http://10.240.132.121:80/players/"+name+".json").subscribe(
+      data => {
+        //console.log(data["_body"]);
+        let jsonData = JSON.parse(data["_body"]);
+        this.openDialog(name, jsonData);
+      },
+      error=> {}
+  );
+    
   }
+
+  image: string;
+  name: string;
+  gamesPlayed: number;
+  winPerCent : number;
+  winStreak: number;
+  rank: number;
+  offenseRank: number;
+  defenseRank: number;
+  rating: number;
+
+
+  openDialog(_name, jsonData): void {
+    let dialogRef = this.dialog.open(PlayerProfileDialog, {
+      width: '400px',
+      data: { name: jsonData["Name"], 
+              image: "../src/assets/images/"+_name+".png", 
+              gamesPlayed: jsonData["gamesPlayed"],
+              winPerCent: jsonData["Winning Percentage"].toFixed(2)*100,
+              winStreak: jsonData["longestWinningStreak"],
+              rank: jsonData["overallRank"],
+              offenseRank: jsonData["offenseRank"],
+              defenseRank: jsonData["defenseRank"],
+              rating: Math.round(jsonData["overallPoints"])
+            }
+    });
+  }
+
+  getPlayersList() {
+    //I don't know why, but the name strings need to be wrapped in an oj=bject. Raw array of strings won't work
+    var list = this._playersList.getPlayersList();
+    list.sort();
+    var ret = [];
+    for (var i = 0;  i < list.length;  i++) {
+      if (list[i] == '') {
+        continue;
+      }
+      ret.push({name: list[i]})
+    }
+    return ret; 
+  }
+  players = this.getPlayersList();
+  playerName: string;
 }
 
-export interface Player {
-  rank: number;
-  rankFlag: boolean;
-  name: string;
-  rating: string;
-  ratingFlag: boolean;
-  offenseRanking: number;
-  offense: number;
-  defenseRanking: number;
-  defense: number;
-  oneDayPriorRanking: number;
-  oneDayPriorRating: number;
-  oneWeekPriorRanking: number;
-  oneWeekPriorRating: number;
-}
+@Component({
+  selector: 'player-profile-dialog',
+  templateUrl: 'player-profile-dialog.html',
+  styleUrls: ['./player-profile.component.scss']
+})
+export class PlayerProfileDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<PlayerProfileDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+} 

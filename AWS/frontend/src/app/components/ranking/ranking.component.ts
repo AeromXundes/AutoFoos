@@ -5,6 +5,7 @@ import { MatTabsModule, MatTableModule } from '@angular/material';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs/Observable';
 import { PlayerProfileComponent } from '../player-profile/player-profile.component';
+import { PlayersListService  } from '../../players-list.service'
 import { Router } from '@angular/router';
 import 'rxjs/add/observable/of'
 
@@ -20,7 +21,7 @@ export class RankingComponent implements OnInit {
   private ratingFlag: boolean;
   private rankFlag: boolean;
 
-  constructor(private papa: PapaParseService, private http: Http, private router:Router) {
+  constructor(private _playersList: PlayersListService, private papa: PapaParseService, private http: Http, private router:Router) {
   }
 
   ngOnInit() {
@@ -53,6 +54,12 @@ export class RankingComponent implements OnInit {
             let endIndex = 10;
             if (results.data.length - 1 < endIndex)
               endIndex = results.data.length - 1;
+            for(let k = 0; k < results.data.length - 1; ++k){
+              let currPlayerData = results.data[k];
+              if (currPlayerData !== "") {
+                this._playersList.addPlayer(currPlayerData[0]);
+              }
+            }
             for(let k = 0; k < endIndex; ++k){
               let currPlayerData = results.data[k];
               if (currPlayerData !== "")

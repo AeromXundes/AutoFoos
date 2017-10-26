@@ -1,0 +1,25 @@
+<style>
+h1 {
+    text-align: center;
+}
+</style>
+
+<mat-grid-list cols="2" rowHeight="1:1">
+<mat-grid-tile>
+<div>
+<h1 mat-dialog-title>{{data.name}}</h1>
+<img [src]="data.image" class="img-circle">
+</div>
+</mat-grid-tile>
+<mat-grid-tile>
+<mat-list>
+<mat-list-item>Game Played {{data.gamesPlayed}}<br/></mat-list-item>
+<mat-list-item>Win% {{data.winPerCent}}<br/></mat-list-item>
+<mat-list-item>Longest Win Streak {{data.winStreak}}<br/></mat-list-item>
+<mat-list-item>Rank {{data.rank}}<br/></mat-list-item>
+<mat-list-item>Rating {{data.rating}}<br/></mat-list-item>
+<mat-list-item>Offense Rank {{data.offenseRank}}<br/></mat-list-item>
+<mat-list-item>Defense Rank {{data.defenseRank}}<br/></mat-list-item>
+</mat-list>
+</mat-grid-tile>
+</mat-grid-list>
