@@ -18,3 +18,8 @@ npm start
 You can debug with code breaks in VS Code by performing the following steps:
 1. From the command line, start the development server w/ `npm run debug`
 1. From the VS Code debugging panel, start the `AutoFoos - Gamestation` configuration
+
+
+## About
+
+Foosball icon made by [Freepik](http://www.freepik.com/) from [www.flaticon.com](http://www.flaticon.com/).

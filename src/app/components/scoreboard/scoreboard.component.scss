@@ -2,10 +2,12 @@
 // TOOLBAR STYLING
 // *********************
 
-.fill-remaining-space {
-  // This fills the remaining space, by using flexbox. 
-  // Every toolbar row uses a flexbox row layout.
-  flex: 1 1 auto;
+.menu-section {
+  flex: 1;
+}
+
+.menu-right {
+  float: right;
 }
 
 i {
@@ -50,20 +52,45 @@ i.fa-futbol-o {
 // END TOOLBAR STYLING
 // ***********************
 
-.content-area {
+mat-grid-list {
   height: 100%;
 }
 
-.score-cell {
-  width: 39%;
+.content-area {
+  height: 100%;
+  display: flex;
 }
 
 .content-cell {
-  display: inline-block;  
+  flex: 1;
 }
 
 .time {
   text-align: center;
   margin-top: 0px;
   margin-bottom: 0px;
+}
+
+.gold-panel {
+  background-color: rgba(255, 255, 224, 0.801);
+}
+
+.black-panel {
+  background-color: rgba(211, 211, 211, 0.808);
+  border-right: 1px solid black !important;
+}
+
+.gold-label {
+  color: darkgoldenrod;
+}
+
+.black-label {
+
+}
+
+.label {
+  text-align: center;
+  font-weight: 200;
+  margin-top: 10px;    
+  margin-bottom: 0;
 }
