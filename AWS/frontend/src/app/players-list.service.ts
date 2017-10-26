@@ -15,15 +15,6 @@ export class PlayersListService {
   }
 
   getPlayersList() {
-    console.log(name);
-    this.http.get("http://10.240.132.121:80/playerslist").subscribe(
-      data => {
-        //console.log(data["_body"]);
-        let jsonData = JSON.parse(data["_body"]);
-//        this.openDialog(name, jsonData);
-      },
-      error=> {}
-  );
     return this.list;
   }
 

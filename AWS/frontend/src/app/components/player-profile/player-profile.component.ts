@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { PlayersListService  } from '../../players-list.service'
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { PapaParseService } from 'ngx-papaparse';
 
 @Component({
   selector: 'player-profile',
@@ -10,7 +11,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class PlayerProfileComponent implements OnInit {
 
-  constructor(private _playersList: PlayersListService, public dialog: MatDialog, private http: Http) { }
+  constructor(private _playersList: PlayersListService, private papa: PapaParseService, public dialog: MatDialog, private http: Http) { }
 
   ngOnInit() {
   }
@@ -57,7 +58,27 @@ export class PlayerProfileComponent implements OnInit {
 
   getPlayersList() {
     //I don't know why, but the name strings need to be wrapped in an oj=bject. Raw array of strings won't work
-    var list = this._playersList.getPlayersList();
+    let list = [];
+    this.http.get("http://10.240.132.121/current_ranking").subscribe(
+      data => {
+        let csvString = data["_body"].toString();
+        this.papa.parse(csvString, {
+          complete: function(results) {
+            let endIndex = 10;
+            if (results.data.length - 1 < endIndex)
+              endIndex = results.data.length - 1;
+            for(let k = 0; k < results.data.length - 1; ++k){
+              let currPlayerData = results.data[k];
+              if (currPlayerData !== "") {
+                this.list.push(currPlayerData[0])
+              }
+            }
+          }
+        });
+      });
+
+//    var list = this._playersList.getPlayersList();
+
     list.sort();
     var ret = [];
     for (var i = 0;  i < list.length;  i++) {
