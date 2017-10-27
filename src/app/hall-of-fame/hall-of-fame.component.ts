@@ -85,7 +85,7 @@ export class HallOfFameComponent implements OnInit {
           let csvString = data["_body"].toString();
           that.papa.parse(csvString, {
             complete: function(results) {
-              for(let k = 0; k < 10; ++k){
+              for(let k = 0; k < 12; ++k){
                 let currPlayerData = results.data[k];
                 that.ratingFlag = false;
                 that.rankFlag = true;
