@@ -14,7 +14,7 @@ const pin_ledRed = 4;
 
 var goldScore = 0;
 var blackScore = 0;
-vat timeOfLastGoal = 0;
+var timeOfLastGoal = 0;
 
 var Gpio = require('pigpio').Gpio;
 var ledYel = new Gpio(pin_ledYel, {mode: Gpio.OUTPUT});
