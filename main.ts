@@ -84,13 +84,6 @@ try {
   // throw e;
 }
 
-var spawn = require('child_process').spawn;
-var winnerOffense = 'Abc';
-var winnerDefense = 'Def';
-var loserOffense = 'Ghi';
-var loserDefense = 'Jkl';
-var loserScore = '4';
-var py = spawn('python', ['RasberryElo.py', winnerOffense,  winnerDefense, loserOffense, loserDefense, loserScore]);
 
 ipcMain.on('registerGold', (event, arg) => {
   rendererGold = event.sender;

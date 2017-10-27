@@ -14,6 +14,7 @@ const pin_ledRed = 4;
 
 var goldScore = 0;
 var blackScore = 0;
+var timeOfLastGoal = 0;
 
 var Gpio = require('pigpio').Gpio;
 var ledYel = new Gpio(pin_ledYel, {mode: Gpio.OUTPUT});
@@ -48,12 +49,20 @@ function blackBeamConncted(connected) {
 }
 
 function incrementGoldScore() {
+  if ((Date.now() - timeOfLastGoal) < 1000) {
+    return;
+  }
+  timeOfLastGoal = Date.now();
   goldScore += 1;
   socket.write(JSON.stringify({response:'gs'}));
   console.log('Gold: ' + goldScore);
 }
 
 function incrementBlackScore() {
+  if ((Date.now() - timeOfLastGoal) < 1000) {
+    return;
+  }
+  timeOfLastGoal = Date.now();
   blackScore += 1;
   socket.write(JSON.stringify({response:'bs'}));
   console.log('Black: ' + blackScore);
