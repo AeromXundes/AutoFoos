@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-const {exec} = require('child_process')
 
 @Injectable()
 export class AwsCommService {
@@ -7,14 +6,7 @@ export class AwsCommService {
   constructor() { }
 
   sendGame(gameStats, callback) {
-  //var request = new XMLHttpRequest();
-  //  request.addEventListener("load", callback);
-  //request.open("POST", "http://10.240.132.121/update_data" , true);
-  //request.setRequestHeader('Content-Type', 'application/json');
-    //request.send(JSON.stringify(gameStats));
-    exec('python /var/www/html/jsonParse.py ' + JSON.stringify(gameStats), (err,stdout,stderr) =>{});    
-    }
-
+  }
 
   getPage(relativeUrl, callback) 
   {
