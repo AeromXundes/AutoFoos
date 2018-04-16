@@ -15,8 +15,10 @@ export class SubmissionPageComponent implements OnInit {
   }
 
   submit() {
+    console.log("submitting")
     this._gameState.resume();
     this._gameState.end();
+    console.log('heer')
     this.router.navigateByUrl('');
   }
 

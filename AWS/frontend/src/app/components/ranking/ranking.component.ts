@@ -39,63 +39,63 @@ export class RankingComponent implements OnInit {
 //    let profilePage = new PlayerProfileComponent(element);
     console.log(element);
     //TODO statically redirect the page
-    window.location.assign('http://10.240.132.121/players/' +  element.name + '.html');
+    //window.location.assign('http://10.240.132.121/players/' +  element.name + '.html');
   }
 
 
   showTopPlayers() {
-    this.http.get("http://10.240.132.121/current_ranking").subscribe(
-      data => {
-        jsonData = [];
-        let csvString = data["_body"].toString();
-        this.papa.parse(csvString, {
-          complete: function(results) {
-            let endIndex = 10;
-            if (results.data.length - 1 < endIndex)
-              endIndex = results.data.length - 1;
-            for(let k = 0; k < endIndex; ++k){
-              let currPlayerData = results.data[k];
-              if (currPlayerData !== "")
-              {
-                this.ratingFlag = false;
-                this.rankFlag = true;
-                let prevRatingPlayer = currPlayerData[7].split("|");
-                let diff = Math.round(currPlayerData[1]) - Math.round(prevRatingPlayer[1]);
-                if(diff > 0 || diff !== diff){
-                  this.ratingFlag = true;
-                }
-                if(Number(currPlayerData[4]) > Number(prevRatingPlayer[0])){
-                  this.rankFlag = false;
-                }
+    // this.http.get("http://10.240.132.121/current_ranking").subscribe(
+    //   data => {
+    //     jsonData = [];
+    //     let csvString = data["_body"].toString();
+    //     this.papa.parse(csvString, {
+    //       complete: function(results) {
+    //         let endIndex = 10;
+    //         if (results.data.length - 1 < endIndex)
+    //           endIndex = results.data.length - 1;
+    //         for(let k = 0; k < endIndex; ++k){
+    //           let currPlayerData = results.data[k];
+    //           if (currPlayerData !== "")
+    //           {
+    //             this.ratingFlag = false;
+    //             this.rankFlag = true;
+    //             let prevRatingPlayer = currPlayerData[7].split("|");
+    //             let diff = Math.round(currPlayerData[1]) - Math.round(prevRatingPlayer[1]);
+    //             if(diff > 0 || diff !== diff){
+    //               this.ratingFlag = true;
+    //             }
+    //             if(Number(currPlayerData[4]) > Number(prevRatingPlayer[0])){
+    //               this.rankFlag = false;
+    //             }
 
-                let oneDayPrior = currPlayerData[7].split("|");
-                let oneWeekPrior = currPlayerData[8].split("|");
-                jsonData.push(new player(
-                  currPlayerData[4],
-                  this.rankFlag,
-                  currPlayerData[0], 
-                  Math.round(currPlayerData[1]).toString()+" {"+diff.toString()+"}", 
-                  this.ratingFlag, 
-                  currPlayerData[5], 
-                  Math.round(currPlayerData[2]), 
-                  currPlayerData[6], 
-                  Math.round(currPlayerData[3]),
-                  oneDayPrior[0],
-                  Math.round(oneDayPrior[1]),
-                  oneWeekPrior[0],
-                  Math.round(oneWeekPrior[1])
-                ));
-              }
-            }
-          }
-        });
-        this.dataSource = new PlayerDataSource(); 
-      },
-      error => {
-        jsonData.push(new player(NaN, false, "", "", false, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN));
-        this.dataSource = new PlayerDataSource(); 
-      }
-    );
+    //             let oneDayPrior = currPlayerData[7].split("|");
+    //             let oneWeekPrior = currPlayerData[8].split("|");
+    //             jsonData.push(new player(
+    //               currPlayerData[4],
+    //               this.rankFlag,
+    //               currPlayerData[0], 
+    //               Math.round(currPlayerData[1]).toString()+" {"+diff.toString()+"}", 
+    //               this.ratingFlag, 
+    //               currPlayerData[5], 
+    //               Math.round(currPlayerData[2]), 
+    //               currPlayerData[6], 
+    //               Math.round(currPlayerData[3]),
+    //               oneDayPrior[0],
+    //               Math.round(oneDayPrior[1]),
+    //               oneWeekPrior[0],
+    //               Math.round(oneWeekPrior[1])
+    //             ));
+    //           }
+    //         }
+    //       }
+    //     });
+    //     this.dataSource = new PlayerDataSource(); 
+    //   },
+    //   error => {
+    //     jsonData.push(new player(NaN, false, "", "", false, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN));
+    //     this.dataSource = new PlayerDataSource(); 
+    //   }
+    // );
   }
 
   displayedColumns = ['rank', 'name', 'rating', 'offenseRanking', 'offense','defenseRanking', 'defense', 'oneDayPriorRanking', 'oneDayPriorRating', 'oneWeekPriorRanking', 'oneWeekPriorRating'];

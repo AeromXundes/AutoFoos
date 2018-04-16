@@ -35,15 +35,15 @@ export class GameStateService {
     console.log(this.getEventsList());
     if (this.useAWS) {
       var that = this;
-      this._aws.sendGame(this.getEventsList(), function(){that._aws.getPage('current_ranking', function(arg) {console.log(arg)});});
-      
+      this._aws.sendGame(this.getEventsList());
+    
     }
-    else {
-      //throw 'Does  not work since  the python files have been  moved to a subfolder...';
-      var spawn = require('child_process').spawn;
-      var jsonString = JSON.stringify(this.getEventsList());
-      var py = spawn('python', ['./jsonParse.py', jsonString], {cwd: './AWS'});
-    }
+    // else {
+    //   //throw 'Does  not work since  the python files have been  moved to a subfolder...';
+    //   var spawn = require('child_process').spawn;
+    //   var jsonString = JSON.stringify(this.getEventsList());
+    //   var py = spawn('python', ['./jsonParse.py', jsonString], {cwd: './AWS'});
+  //}
   }
   
   setGoldOffense(name){

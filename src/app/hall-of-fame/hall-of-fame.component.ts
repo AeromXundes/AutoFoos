@@ -6,6 +6,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { Router } from '@angular/router';
+const fs = require('fs');
 
 let jsonData: Player[] = [];
 
@@ -79,10 +80,9 @@ export class HallOfFameComponent implements OnInit {
   getShowTopPlayers() {
     var that = this;
     var showTopPlayers = function() {
-      that.http.get("http://10.240.132.121/current_ranking").subscribe(
-        data => {
+      fs.readFile("/var/www/html/currentStandings.csv", 'utf8', (err, data) => {
           jsonData = [];
-          let csvString = data["_body"].toString();
+          const csvString = data.toString();
           that.papa.parse(csvString, {
             complete: function(results) {
               for(let k = 0; k < 12; ++k){
@@ -111,13 +111,7 @@ export class HallOfFameComponent implements OnInit {
               that.dataSource = new PlayerDataSource();
             }
         });
-        },
-        error => {
-          jsonData.push(new player(NaN, false, "", "", false, NaN, NaN, NaN, NaN));
-        }
-
-      );
-      
+      });
     }
     return showTopPlayers;
   }
